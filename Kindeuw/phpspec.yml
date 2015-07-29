@@ -1,0 +1,5 @@
+suites:
+    main:
+        namespace: Kindeuw
+        psr4_prefix: Kindeuw
+        src_path: app
