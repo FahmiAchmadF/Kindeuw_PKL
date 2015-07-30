@@ -28,23 +28,38 @@
 // 	'password' => 'Auth\PasswordController',
 // ]);
 
-Route::get('Kindeuw/create', 'KindeuwController@create');
-Route::get('Kindeuw', 'KindeuwController@index');
-Route::post('Kindeuw', 'KindeuwController@store');
-Route::get('Kindeuw/{id}', 'KindeuwController@baca');
-Route::delete('Kindeuw/hapus/{id}',array(
+//ALUR DARURAT
+
+//Admin
+// Masuk_Index()->Login->||->Login as Admin()->can do ['1.CRUD'];
+
+//Guest
+// Masuk_Index()->NotLoged->can do ['Read'];
+
+
+
+Route::get('Admin/create', 'KindeuwController@create');
+Route::post('Admin/index', 'KindeuwController@store');
+Route::get('Admin/index', 'CustomLoginController@index');
+Route::get('Admin/{id}', 'CustomLoginController@baca');
+Route::delete('Admin/hapus/{id}',array(
 	'uses' => 'KindeuwController@hapus', 'as' => 'Kindeuw'));
-Route::get('Kindeuw/ubah/{id}', 'KindeuwController@edit');
-Route::put('Kindeuw/ubah/lagi/{id}',array(
+Route::get('Admin/ubah/{id}', 'KindeuwController@edit');
+Route::put('Admin/ubah/lagi/{id}',array(
         'uses' => 'KindeuwController@ubah', 'as' => 'Kindeuw'));
+Route::post('Admin/search/search/search', 'CustomLoginController@cari');
+Route::get('index', 'CustomLoginController@getlogin');
+Route::get('Kindeuw/index/index/logout', 'CustomLoginController@logout');
+Route::post('Kindeuw/index/index', 'CustomLoginController@postlogin');
+
+
+
+Route::get('Kindeuw', 'KindeuwController@index');
+Route::get('Kindeuw/{id}', 'KindeuwController@baca');
 Route::get('Kindeuw/About/About', 'KindeuwController@about');
 Route::get('Kindeuw/Contact/Contact', 'KindeuwController@kontak');
 Route::post('Kindeuw/search/search/search', 'KindeuwController@cari');
 Route::get('Kindeuw/pdf/pdf/{id}', 'KindeuwController@pdf');
 Route::get('Kindeuw/excel/excel', 'KindeuwController@excel');
-Route::get('Kindeuw/admin/admin', 'KindeuwController@admin');
-Route::get('Kindeuw/index/index', 'CustomLoginController@getlogin');
-Route::post('Kindeuw/index/index', 'CustomLoginController@postlogin');
 Route::get('Kindeuw/daftar/akun', 'KindeuwController@daftar');
 Route::post('Kindeuw/daftar/akun/cek', 'KindeuwController@regis');
-Route::get('Kindeuw/index/index/logout', 'CustomLoginController@logout');

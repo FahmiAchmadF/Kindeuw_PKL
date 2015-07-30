@@ -1,7 +1,7 @@
 @extends('Kindeuw.Administrator.Admin')
 @section('kontensatu')
 
-<div class="col-lg-10 col-xs-10">
+<div class="col-lg-10 col-xs-10 col-lg-offset-2 col-xs-offset-2">
     @if(Session::has('flash_message'))
         <div class="alert alert-success"><span class="glyphicon glyphicon-ok"></span> {{ Session::get('flash_message') }}</div>
     @endif
@@ -36,9 +36,9 @@
                         <td>{{ $manekin->Judul }}</td>
                         <td>{{ $manekin->Penerbit }}</td>
                         <td>Rp.{{ $format }}</td>
-                        <td><center><a href="{{ url('Kindeuw/ubah',$manekin->id) }}" class="btn btn-warning"><span class="glyphicon glyphicon-edit"></span> UBAH</a></center></td>
-                        <td><center><a href="{{ url('Kindeuw',$manekin->id) }}" class="btn btn-info"><span class="glyphicon glyphicon-book"></span> BACA</a></center></td>
-                        <td><center>{!! Form::open(['url' => ['Kindeuw/hapus',$manekin->id], 'method' => 'delete']) !!}
+                        <td><center><a href="{{ url('Admin/ubah',$manekin->id) }}" class="btn btn-warning"><span class="glyphicon glyphicon-edit"></span> UBAH</a></center></td>
+                        <td><center><a href="{{ url('Admin',$manekin->id) }}" class="btn btn-info"><span class="glyphicon glyphicon-book"></span> BACA</a></center></td>
+                        <td><center>{!! Form::open(['url' => ['Admin/hapus',$manekin->id], 'method' => 'delete']) !!}
                             <button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span> HAPUS</button>
                             {!! Form::close() !!}</center></td>
                     </tr>

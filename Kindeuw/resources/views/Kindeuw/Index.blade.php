@@ -1,7 +1,7 @@
 @extends('Kindeuw.App')
 @section('kontensatu')
 
-<div class="col-lg-10 col-xs-10">
+<div class="container">
     @if(Session::has('flash_message'))
         <div class="alert alert-success"><span class="glyphicon glyphicon-ok"></span> {{ Session::get('flash_message') }}</div>
     @endif

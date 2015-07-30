@@ -14,12 +14,14 @@ use dompdf;
 use PDF;
 use Excel;
 use Hash;
+use Auth;
 
 class KindeuwController extends Controller {
 
 	public function create(){
+        $username = Auth::user()->username;
 
-		return view('Kindeuw.Create');
+		return view('Kindeuw.Administrator.Create', compact('username'));
 	}
 
     public function login(){
@@ -41,7 +43,7 @@ class KindeuwController extends Controller {
         
         $req->save();
             \Session::flash('buat_akun','Berhasil Membuat Akun, Silahkan Login');
-        return redirect('Kindeuw/index/index');
+        return redirect('Admin/index');
     }
 
 	public function index(){
@@ -66,35 +68,41 @@ class KindeuwController extends Controller {
 
 
         $file = Input::file('image');
+        $username = Auth::user()->username;
+        $manekinds = Kindeuw::paginate(10);
             if ($file == null) {
                 \Session::flash('flash_message','Berhasil Menambah Data Buku');
-            return redirect('Kindeuw');
+            return view('Kindeuw.Administrator.Index', compact('username', 'manekinds'));
         }else{
         $filename = $kindeuw->id . '.png';
 
         Image::make($file->getRealPath())->resize('600', '380')->save('image/'.$filename);
             \Session::flash('flash_message','Berhasil Menambah Data Buku');
-        return redirect('Index');
+        return view('Kindeuw.Administrator.Index', compact('username', 'manekinds'));
         }
 	}
 
 	public function baca($id){
 		$show = Kindeuw::find($id);
-	
+	   
 		return view('Kindeuw.Baca', compact('show'));
 	}
 
 	public function hapus($id){
 		Kindeuw::find($id)->delete();
+        $manekinds = Kindeuw::paginate(10);
         File::delete('image/' . $id .'.png');
+        $username = Auth::user()->username;
         \Session::flash('hapus_data','Berhasil Menghapus Data');
-        return redirect('Kindeuw');
+        return view('Kindeuw.Administrator.Index', compact('username', 'manekinds'));
 	}
 
     public  function ubah($id, Requests\KindeuwRequest $request){
         
 
         $req = $request->all();
+        $manekinds = Kindeuw::paginate(10);
+        $username = Auth::user()->username;
         $hasil = Kindeuw::find($id);
         $jojon = Input::file('image'); 
             if ($jojon == null) {
@@ -115,14 +123,14 @@ class KindeuwController extends Controller {
 
         
             \Session::flash('ubah_data','Berhasil Mengubah Data');
-        return redirect('Kindeuw');
+        return view('Kindeuw.Administrator.Index', compact('manekinds', 'username'));
 
     }
 
     public function edit($id){
         $edit = Kindeuw::find($id);
-
-        return view('Kindeuw.Ubah', compact('edit'));
+        $username = Auth::user()->username;
+        return view('Kindeuw.Administrator.Ubah', compact('edit', 'username'));
     }
 
     public function about(){

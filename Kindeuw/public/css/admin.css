@@ -3,6 +3,16 @@
 	src: {{ asset('bootstrap-3.3.5-dist/fonts/JosefinSlab-Bold.ttf') }};
 }
 
+.kanan{
+	float: right;
+	right: 0;
+}
+
+.pdf{
+    background-color: #e67e22 !important;
+    color: white !important;
+}
+
 kindeuw{
 	font-size: 35px;
 	font-family: Sans-Serif;
@@ -30,7 +40,7 @@ buku{
 	float: left;
 	top: 0;
 	left: 0;
-	position: fixed;
+	position: fixed !important;
 }
 
 
@@ -40,12 +50,6 @@ buku{
 	width: 90% !important;
 	background-color: #95a5a6;
 }
-
-img{
-	height: 100% !important;
-	width: 100% !important;	
-}
-
 .paddingnol{
 	padding-left: 0 !important;
 	padding-right: 0 !important;

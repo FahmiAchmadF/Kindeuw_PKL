@@ -24,11 +24,11 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li><a href="{{ url('Kindeuw') }}">Halaman Utama</a></li>
             <li><a href="{{ url('Kindeuw/About/About') }}">Tentang Kami</a></li>
             <li><a href="{{ url('Kindeuw/Contact/Contact') }}">Kontak</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
+          <li><a href="{{ url('index') }}">Login</a></li>
             <li>{!! Form::open(['url' => 'Kindeuw/search/search/search', 'method' => 'post']) !!}
                 {!! Form::text('cari1', null, ['class' => 'form-control', 'placeholder' => 'Cari Data Buku']) !!}</li>
             <li>

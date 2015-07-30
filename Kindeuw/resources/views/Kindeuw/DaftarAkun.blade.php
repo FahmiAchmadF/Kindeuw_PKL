@@ -4,7 +4,7 @@
 <div class="col-lg-12 col-xs-12">
 	
 	<div class="form-group">
-			<a href="{{ url('Kindeuw/index/index') }}" class="btn btn-default">Kembali</a>
+			<a href="{{ url('index') }}" class="btn btn-default">Kembali</a>
 	</div>
 
 	{!! Form::open(['url'=>'Kindeuw/daftar/akun/cek', 'method'=>'post']) !!}

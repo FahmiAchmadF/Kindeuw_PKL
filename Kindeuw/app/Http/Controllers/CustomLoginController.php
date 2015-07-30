@@ -14,6 +14,14 @@ use Input;
 
 class CustomLoginController extends Controller {
 
+
+	public function index(){
+		$username = Auth::user()->username;
+		$manekinds = Kindeuw::paginate(10);
+
+		return view('Kindeuw.Administrator.Index', compact('username', 'manekinds'));
+
+	}
 	public function getlogin(){
 		return view('Kindeuw.Login');
 	}
@@ -24,13 +32,12 @@ class CustomLoginController extends Controller {
 		
 		if(Auth::attempt(['email'=>$email, 'password'=>$password]))
 		{	
-			$perintah = DB::select('select * from user where email = ?', [$email]);
-				$iniuser = $perintah[0];
+			$username = Auth::user()->username;
 
 				$manekinds = Kindeuw::paginate(10);
-			 return view('Kindeuw.Administrator.Index', compact('manekinds'));
+			 return view('Kindeuw.Administrator.Index', compact('manekinds', 'username'));
 		}else{
-			return redirect('Kindeuw/index/index');
+			return redirect('index');
 		}
 	 }
 
@@ -38,7 +45,31 @@ class CustomLoginController extends Controller {
 	 	$email = Auth::user()->email;
 	 	Auth::logout($email);
 
-	 	return redirect('Kindeuw/index/index');
+	 	return redirect('index');
 	 }
+
+	 public function baca($id){
+		$show = Kindeuw::find($id);
+	    $username = Auth::user()->username;
+		return view('Kindeuw.Administrator.Baca', compact('show', 'username'));
+	}
+
+	public function cari(){
+		$searchterm = Request::get('cari1');
+		$username = Auth::user()->username;
+        if ($searchterm){
+
+
+            $products = DB::table('books');
+            $results = $products->where('id', 'LIKE', '%'. $searchterm .'%')
+                ->orWhere('Judul', 'LIKE', '%'. $searchterm .'%')
+                ->get();
+            if($searchterm == null){
+                return ('404 Not Found');
+            }
+            return view('Kindeuw.Administrator.Search', compact('results', 'searchterm', 'username'));
+
+        }
+	}
 
 }
