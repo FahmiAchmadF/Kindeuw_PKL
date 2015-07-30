@@ -3,7 +3,6 @@
 
     <div class="container-fluid">
     <h1>Hasil Pencarian Untuk "{{ $searchterm }}"</h1>
-        @if($results===null)
         @foreach($results as $result)
             <div class="form-group">
             <h5>ID Buku :<a href="{{ url('Kindeuw', $result->id) }}">{{ $result->id }}</a></h5>
@@ -11,14 +10,6 @@
                 <hr/>
             </div>
         @endforeach
-
-        @else
-            <div class="form-group">
-            <center>
-                <h1>Tidak Ditemukan :'(</h1>
-            </center>
-            </div>
-        @endif
         <div class="form-group">
             <a href="{{ url('Kindeuw')  }}" class="btn btn-primary">Kembali</a>
         </div>

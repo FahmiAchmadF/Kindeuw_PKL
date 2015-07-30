@@ -151,7 +151,11 @@ class KindeuwController extends Controller {
                 ->orWhere('Judul', 'LIKE', '%'. $searchterm .'%')
                 ->get();
             
-            return view('Kindeuw.Search', compact('results', 'searchterm'));
+            if ($results == null) {
+                    return view('Kindeuw.Searchfail', compact('results', 'searchterm'));
+                }else{
+                    return view('Kindeuw.Search', compact('results', 'searchterm'));
+                }
             }
         }
 

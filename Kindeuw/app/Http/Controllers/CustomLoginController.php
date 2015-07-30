@@ -54,8 +54,8 @@ class CustomLoginController extends Controller {
 	}
 
 	public function cari(Requests\searchreq $req){
-		$searchterm = $req->get('cari1');
 		$username = Auth::user()->username;
+        $searchterm = $req->get('cari1');
         if ($searchterm){
 
 
@@ -63,9 +63,12 @@ class CustomLoginController extends Controller {
             $results = $products->where('id', 'LIKE', '%'. $searchterm .'%')
                 ->orWhere('Judul', 'LIKE', '%'. $searchterm .'%')
                 ->get();
-            //dd($searchterm);
-            return view('Kindeuw.Administrator.Search', compact('results', 'searchterm', 'username'));
-
+                if ($results == null) {
+                	return view('Kindeuw.Administrator.Searchfail', compact('results', 'searchterm', 'username'));
+                }else{
+                	return view('Kindeuw.Administrator.Search', compact('results', 'searchterm', 'username'));
+                }
+            }
         }
-	}
+
 }

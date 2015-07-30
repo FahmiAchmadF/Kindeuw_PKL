@@ -16,7 +16,6 @@
 		<table class="table table-striped table-bordered table-hover">
 			<tr>
                 <th>No.</th>
-				<th>ID</th>
 				<th>Judul</th>
 				<th>Penerbit</th>
 				<th>Harga</th>
@@ -32,7 +31,6 @@
                            <?php echo $i; ?>
 
                         </td>
-                        <td>{{ $manekin->id }}</td>
                         <td>{{ $manekin->Judul }}</td>
                         <td>{{ $manekin->Penerbit }}</td>
                         <td>Rp.{{ $format }}</td>
