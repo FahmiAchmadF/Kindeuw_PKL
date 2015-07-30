@@ -16,6 +16,7 @@ abstract class Request extends FormRequest {
 		'Penerbit' => 'required|min:5',
 		'Harga' => 'required|numeric',
 		'image'	=> 'require|mimes:png'];
+		
 	}
 
 }

@@ -3,7 +3,7 @@
 
     <div class="col-lg-10 col-xs-10 col-lg-offset-2 col-xs-offset-2">
     <h1>Hasil Pencarian Untuk "{{ $searchterm }}"</h1>
-        @if(isset($results))
+        @if($results===null)
         @foreach($results as $result)
             <div class="form-group">
             <h5>ID Buku :<a href="{{ url('Admin', $result->id) }}">{{ $result->id }}</a></h5>
@@ -14,7 +14,9 @@
 
         @else
             <div class="form-group">
-                <h1>Tidak Ditemukan</h1>
+            <center>
+                <h1>Tidak Ditemukan :'(</h1>
+            </center>
             </div>
         @endif
         <div class="form-group">

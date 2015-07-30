@@ -1,8 +1,7 @@
 <?php namespace Kindeuw\Http\Controllers;
 
 use Kindeuw\Http\Controllers\Controller;
-
-
+use Kindeuw\Http\Requests;
 use Request;
 use Hash;
 use Auth;
@@ -54,8 +53,8 @@ class CustomLoginController extends Controller {
 		return view('Kindeuw.Administrator.Baca', compact('show', 'username'));
 	}
 
-	public function cari(){
-		$searchterm = Request::get('cari1');
+	public function cari(Requests\searchreq $req){
+		$searchterm = $req->get('cari1');
 		$username = Auth::user()->username;
         if ($searchterm){
 
@@ -64,12 +63,9 @@ class CustomLoginController extends Controller {
             $results = $products->where('id', 'LIKE', '%'. $searchterm .'%')
                 ->orWhere('Judul', 'LIKE', '%'. $searchterm .'%')
                 ->get();
-            if($searchterm == null){
-                return ('404 Not Found');
-            }
+            //dd($searchterm);
             return view('Kindeuw.Administrator.Search', compact('results', 'searchterm', 'username'));
 
         }
 	}
-
 }

@@ -141,8 +141,8 @@ class KindeuwController extends Controller {
         return view('Kindeuw.Contact');
     }
 
-    public function cari(){
-        $searchterm = Request::get('cari1');
+    public function cari(Requests\searchreq $req){
+        $searchterm = $req->get('cari1');
         if ($searchterm){
 
 
@@ -150,13 +150,10 @@ class KindeuwController extends Controller {
             $results = $products->where('id', 'LIKE', '%'. $searchterm .'%')
                 ->orWhere('Judul', 'LIKE', '%'. $searchterm .'%')
                 ->get();
-            if($searchterm == null){
-                return ('404 Not Found');
-            }
+            
             return view('Kindeuw.Search', compact('results', 'searchterm'));
-
+            }
         }
-    }
 
     public function pdf($id){
         $read = Kindeuw::find($id);

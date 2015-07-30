@@ -36,7 +36,15 @@
 											</div>
 										</div>
 										<div class="form-group">
-										{!! Form::submit('Login', ['class' => 'btn btn-succes btn-login-submit']) !!}
+												<div class="row">
+														<div class="col-lg-3 col-xs-3">
+														{!! Form::submit('Login', ['class' => 'btn btn-succes btn-login-submit']) !!}
+														</div>
+
+														<div class="col-lg-1 col-lg-offset-1 col-xs-1 col-xs-offset-1">
+														<a href="Kindeuw" class="btn btn-primary">Lanjut Sebagai Tamu</a>	
+														</div>
+												</div>
 										</div>
 									</div>
 								</div>
