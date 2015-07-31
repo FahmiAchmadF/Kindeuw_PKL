@@ -9,7 +9,7 @@
 <div class="col-lg-2 col-xs-2 sidebar paddingnol">
 	
 	<div class="col-lg-10 col-xs-10 paddingnol">
-            {!! Form::open(['url' => 'Admin/search/search/search', 'method' => 'post']) !!}
+            {!! Form::open(['url' => 'Admin/search/search/search', 'method' => 'post', 'value' => 'csrf_token()']) !!}
                 {!! Form::text('cari1', null, ['class' => 'form-control bordernol', 'placeholder' => 'Cari Data Buku']) !!}
     </div><div class="col-lg-2 col-xs-2 paddingnol">        
                 <button class="btn btn-default btn-block inicari bordernol" type="submit"><span class="glyphicon glyphicon-search"></span></button>

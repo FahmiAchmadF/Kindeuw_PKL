@@ -53,22 +53,26 @@ class CustomLoginController extends Controller {
 		return view('Kindeuw.Administrator.Baca', compact('show', 'username'));
 	}
 
-	public function cari(Requests\searchreq $req){
+	public function cari(){
 		$username = Auth::user()->username;
-        $searchterm = $req->get('cari1');
-        if ($searchterm){
-
-
-            $products = DB::table('books');
-            $results = $products->where('id', 'LIKE', '%'. $searchterm .'%')
-                ->orWhere('Judul', 'LIKE', '%'. $searchterm .'%')
-                ->get();
-                if ($results == null) {
+        $searchterm = Request::input('cari1');
+		    if ($searchterm == '0') {
+                	return view('Kindeuw.Administrator.Searchfail', compact('results', 'searchterm', 'username'));
+                }elseif ($searchterm == '') {
+                	return view('Kindeuw.Administrator.Searchfail', compact('results', 'searchterm', 'username'));
+                }elseif ($searchterm == ' ') {
                 	return view('Kindeuw.Administrator.Searchfail', compact('results', 'searchterm', 'username'));
                 }else{
-                	return view('Kindeuw.Administrator.Search', compact('results', 'searchterm', 'username'));
+                	    $products = DB::table('books');
+            			$results = $products->where('id', 'LIKE', '%'. $searchterm .'%')
+                		->orWhere('Judul', 'LIKE', '%'. $searchterm .'%')
+                		->get();
+                	}
+                if ($results == null) {
+                return view('Kindeuw.Administrator.Searchfail', compact('results', 'searchterm', 'username'));
+               	}else{
+                return view('Kindeuw.Administrator.Search', compact('results', 'searchterm', 'username'));
                 }
-            }
         }
 
 }

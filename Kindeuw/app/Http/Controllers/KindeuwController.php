@@ -141,23 +141,24 @@ class KindeuwController extends Controller {
         return view('Kindeuw.Contact');
     }
 
-    public function cari(Requests\searchreq $req){
-        $searchterm = $req->get('cari1');
-        if ($searchterm){
-
-
+    public function cari(){
+        $searchterm = Request::input('cari1');
+        if ($searchterm == '') {
+            return view('Kindeuw.Searchfail', compact('results', 'searchterm'));            
+        }elseif ($searchterm == ' ') {
+            return view('Kindeuw.Searchfail', compact('results', 'searchterm'));
+        }else {
             $products = DB::table('books');
             $results = $products->where('id', 'LIKE', '%'. $searchterm .'%')
                 ->orWhere('Judul', 'LIKE', '%'. $searchterm .'%')
                 ->get();
-            
+        }   
             if ($results == null) {
                     return view('Kindeuw.Searchfail', compact('results', 'searchterm'));
                 }else{
                     return view('Kindeuw.Search', compact('results', 'searchterm'));
                 }
             }
-        }
 
     public function pdf($id){
         $read = Kindeuw::find($id);

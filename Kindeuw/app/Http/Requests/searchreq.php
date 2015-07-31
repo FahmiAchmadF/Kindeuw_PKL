@@ -22,7 +22,7 @@ class searchreq extends Request {
 	public function rules()
 	{
 		return [
-			'cari1'=>'required|not_in:0'
+			'cari1' => 'required|not_in:0|min:1'
 		];
 	}
 
