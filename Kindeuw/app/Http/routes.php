@@ -11,32 +11,6 @@
 |
 */
 
-// Route::get('/', 'WelcomeController@index');
-
-// Route::get('home', 'HomeController@index');
-
-// Route::get('/halo', function()
-// {
-// 	return "Halo Fahmi, Semangat Ya PKL Di Javan Cipta Solusinya :D";
-// });
-
-// Route::get('/halo-juga', 'SiteController@haloJuga');
-
-
-// Route::controllers([
-// 	'auth' => 'Auth\AuthController',
-// 	'password' => 'Auth\PasswordController',
-// ]);
-
-//ALUR DARURAT
-
-//Admin
-// Masuk_Index()->Login->||->Login as Admin()->can do ['1.CRUD'];
-
-//Guest
-// Masuk_Index()->NotLoged->can do ['Read'];
-
-
 
 Route::get('Admin/create', 'KindeuwController@create');
 Route::post('Admin/index', 'KindeuwController@store');

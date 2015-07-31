@@ -13,7 +13,7 @@ class KonfirmasiPembayaran extends Migration {
 	public function up()
 	{
 		Schema::create('konfirmasi_pembayaran', function(Blueprint $table){
-			$table->string('id_faktur', 15);
+			$table->string('id_faktur', 15)->primary();
 			$table->string('nama_pemilik_rekening', 50);
 			$table->string('nama_bank', 35);
 			$table->string('nomor_rekening', 30);

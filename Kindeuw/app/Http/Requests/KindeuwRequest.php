@@ -22,10 +22,15 @@ class KindeuwRequest extends Request {
 	public function rules()
 	{
 		return[
-		'Judul' => 'required|min:5',
-		'Penerbit' => 'required|min:5',
-		'Harga' => 'required|numeric',
+		'stok' => 'required|min:1|numeric|max:9999999999',
+		'Judul' => 'required|min:5|max:30',
+		'Penulis' => 'required|min:5|max:40',
+		'Penerbit' => 'required|min:5|max:35',
 		'Deskripsi' => 'required|min:25',
+		'Banyak_halaman' => 'required|min:1|max:99999999999|numeric',
+		'Bahasa' => 'required',
+		'Genre' => 'required',
+		'Harga' => 'required|min:3|max:99999999999|numeric',
 		'image'	=> 'mimes:png,jpg,jpeg'];
 	}
 

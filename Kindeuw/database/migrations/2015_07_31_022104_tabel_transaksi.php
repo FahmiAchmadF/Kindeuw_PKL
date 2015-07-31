@@ -13,7 +13,7 @@ class TabelTransaksi extends Migration {
 	public function up()
 	{
 		Schema::create('transaksi', function(Blueprint $table){
-			$table->string('id_faktur');
+			$table->string('id_faktur', 15)->primary();
 			$table->string('email', 30);
 			$table->string('nama', 50);
 			$table->string('alamat', 160);

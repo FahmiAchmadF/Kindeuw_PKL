@@ -16,7 +16,7 @@ class TabelBooks extends Migration {
 			$table->increments('id');
 			$table->integer('stok');
 			$table->string('Judul', 30);
-			$string->string('Penulis', 40);
+			$table->string('Penulis', 40);
 			$table->string('Penerbit', 35);
 			$table->text('Deskripsi');
 			$table->integer('Banyak_halaman');

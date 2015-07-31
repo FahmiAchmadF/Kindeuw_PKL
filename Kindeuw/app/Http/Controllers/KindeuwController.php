@@ -4,6 +4,8 @@ use Kindeuw\Http\Requests;
 use Kindeuw\Http\Controllers\Controller;
 use Kindeuw\Kindeuw;
 use Kindeuw\Model_User;
+use Kindeuw\Bahasa;
+use Kindeuw\Genre;
 use DB;
 use Carbon\Carbon;
 use Input;
@@ -20,8 +22,10 @@ class KindeuwController extends Controller {
 
 	public function create(){
         $username = Auth::user()->username;
-
-		return view('Kindeuw.Administrator.Create', compact('username'));
+        $opsibahasa=Bahasa::lists('opsi_bahasa','id');
+        $opsigenre=Genre::lists('opsi_genre','id');
+        //dd($opsigenre, $opsibahasa);
+		return view('Kindeuw.Administrator.Create', compact('username', 'opsibahasa', 'opsigenre'));
 	}
 
     public function login(){
@@ -56,14 +60,28 @@ class KindeuwController extends Controller {
 	}
 
 	public function store(Requests\KindeuwRequest $request){
-		$kindeuw = new Kindeuw([
+		$bahasa = $request->get('Bahasa');
+        $genre = $request->get('Genre');
+        $hasilgenre = DB::select('select opsi_genre from genre where id= ?', [$genre]);
+        $hasilgenre1 = $hasilgenre[0]->opsi_genre;
+        $hasilbahasa = DB::select('select opsi_bahasa from bahasa where id= ?', [$bahasa]);
+        $hasilbahasa1 = $hasilbahasa[0]->opsi_bahasa;
+
+        $kindeuw = new Kindeuw([
             'id' => $request->get('id'),
+            'stok' => $request->get('stok'),
             'Judul' => $request->get('Judul'),
+            'Penulis' => $request->get('Penulis'),
             'Penerbit'  => $request->get('Penerbit'),
             'Deskripsi' => $request->get('Deskripsi'),
+            'Banyak_halaman' => $request->get('Banyak_halaman'),
+            'Bahasa' => $hasilbahasa1,
+            'Genre' => $hasilgenre1,
             'Harga' => $request->get('Harga'),
             'created_at' => Carbon::now(),
             ]);
+        
+
         $kindeuw->save();
 
 
