@@ -34,11 +34,11 @@
 						</div>
 				<div class="form-group">
 				{!! Form::label('Bahasa', 'Bahasa:') !!}
-				{!! Form::select('Bahasa', $opsibahasa, null, ['class'=>'form-control']) !!}
+				{!! Form::select('Bahasa', $opsibahasa, 1, ['class'=>'form-control']) !!}
 				</div>
 		<div class="form-group">
 		{!! Form::label('Genre', 'Genre:') !!}
-		{!! Form::select('Genre', $opsigenre, null, ['class' => 'form-control']) !!}
+		{!! Form::select('Genre', $opsigenre, 1, ['class' => 'form-control']) !!}
 		</div>
 		<div class="form-group">
 		{!! Form::label('Harga', 'Harga:') !!}

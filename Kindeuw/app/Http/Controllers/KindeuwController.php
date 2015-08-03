@@ -24,7 +24,6 @@ class KindeuwController extends Controller {
         $username = Auth::user()->username;
         $opsibahasa=Bahasa::lists('opsi_bahasa','id');
         $opsigenre=Genre::lists('opsi_genre','id');
-        //dd($opsigenre, $opsibahasa);
 		return view('Kindeuw.Administrator.Create', compact('username', 'opsibahasa', 'opsigenre'));
 	}
 
@@ -116,9 +115,20 @@ class KindeuwController extends Controller {
 	}
 
     public  function ubah($id, Requests\KindeuwRequest $request){
+        $bahasa = $request->get('Bahasa');
+        $genre = $request->get('Genre');
+        $hasilgenre = DB::select('select opsi_genre from genre where id= ?', [$genre]);
+        $hasilgenre1 = $hasilgenre[0]->opsi_genre;
+        $hasilbahasa = DB::select('select opsi_bahasa from bahasa where id= ?', [$bahasa]);
+        $hasilbahasa1 = $hasilbahasa[0]->opsi_bahasa;        
+
+        
+        $req = $request->all();
+        //dd($req);
+        
+        
         
 
-        $req = $request->all();
         $manekinds = Kindeuw::paginate(10);
         $username = Auth::user()->username;
         $hasil = Kindeuw::find($id);
@@ -126,6 +136,8 @@ class KindeuwController extends Controller {
             if ($jojon == null) {
 
                 $hasil->update($req);
+                    //$hasil->sync($request->input('Bahasa'));
+                    //$hasil->sync($request->input('Genre'));
 
             }else{
                 File::delete('image/' . $id . '.png');
@@ -136,7 +148,9 @@ class KindeuwController extends Controller {
 
                 Image::make($gambar->getRealPath())->resize('600', '380')->save('image/'.$namafile);
 
-                $hasil->update($req);        
+                $hasil->update($req); 
+                // $hasil->sync($request->input('Bahasa'));
+                // $hasil->sync($request->input('Genre'));       
             }
 
         
@@ -148,7 +162,10 @@ class KindeuwController extends Controller {
     public function edit($id){
         $edit = Kindeuw::find($id);
         $username = Auth::user()->username;
-        return view('Kindeuw.Administrator.Ubah', compact('edit', 'username'));
+        $opsibahasa=Bahasa::lists('opsi_bahasa','id');
+        $opsigenre=Genre::lists('opsi_genre','id');
+        //dd($inibahasa);
+        return view('Kindeuw.Administrator.Ubah', compact('edit', 'username', 'opsibahasa', 'opsigenre'));
     }
 
     public function about(){
