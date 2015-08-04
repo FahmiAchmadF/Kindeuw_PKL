@@ -6,4 +6,8 @@ class Bahasa extends Model {
 
 	protected $table = 'bahasa';
 
+	public function books()
+	{
+		return $this->belongsToMany('Kindeuw\Kindeuw', 'buku_bahasa', 'id_bahasa', 'id_buku');
+	}
 }

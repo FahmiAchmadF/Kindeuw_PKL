@@ -34,11 +34,11 @@
 						</div>
 				<div class="form-group">
 				{!! Form::label('Bahasa', 'Bahasa:') !!}
-				{!! Form::select('Bahasa', $opsibahasa, 1, ['class'=>'form-control']) !!}
+				{!! Form::select('Bahasa[]', $opsibahasa, null, ['id'=>'Bahasa_list', 'class'=>'form-control', 'multiple']) !!}
 				</div>
 		<div class="form-group">
 		{!! Form::label('Genre', 'Genre:') !!}
-		{!! Form::select('Genre', $opsigenre, 1, ['class' => 'form-control']) !!}
+		{!! Form::select('Genre[]', $opsigenre, null, ['id'=>'Genre_list', 'class' => 'form-control', 'multiple']) !!}
 		</div>
 		<div class="form-group">
 		{!! Form::label('Harga', 'Harga:') !!}
@@ -71,3 +71,10 @@
 
     </div>
 @stop
+
+@section('footer')
+<script type="text/javascript">
+	$('#Bahasa_list').select2();
+	$('#Genre_list').select2();
+</script>
+@endsection

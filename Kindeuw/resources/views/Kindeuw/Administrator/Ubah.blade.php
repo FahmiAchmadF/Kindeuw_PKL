@@ -32,11 +32,11 @@
                                 </div>
                           <div class="form-group">
                           {!! Form::label('Bahasa', 'Bahasa:') !!}
-                          {!! Form::select('Bahasa', $opsibahasa, $edit->Bahasa, ['class' => 'form-control']) !!}
+                          {!! Form::select('Bahasa[]', $opsibahasa, $inibahasa, ['id'=>'Bahasa_list', 'class' => 'form-control', 'multiple']) !!}
                           </div>
                       <div class="form-group">
                       {!! Form::label('Genre', 'Genre:') !!}
-                      {!! Form::select('Genre', $opsigenre, $edit->Genre, ['class' => 'form-control']) !!}
+                      {!! Form::select('Genre[]', $opsigenre, $inigenre, ['id'=>'Genre_list', 'class' => 'form-control', 'multiple']) !!}
                       </div>
               <div class="form-group">
               {!! Form::label('Harga', 'Harga:') !!}
@@ -61,3 +61,11 @@
        {!! Form::close() !!}
   </div>
 @stop
+
+
+@section('footer')
+  <script type="text/javascript">
+  $('#Bahasa_list').select2();
+  $('#Genre_list').select2();
+  </script>
+@endsection

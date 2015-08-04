@@ -19,7 +19,7 @@
 				<th>Judul</th>
 				<th>Penerbit</th>
 				<th>Harga</th>
-				<th>Aksi</th>
+				<th colspan="2">Aksi</th>
 			</tr>
             <?php $i=1; ?>
             @foreach($manekinds as $manekin)
@@ -35,7 +35,7 @@
                         <td>{{ $manekin->Penerbit }}</td>
                         <td>Rp.{{ $format }}</td>
                         <td><center><a href="{{ url('Kindeuw',$manekin->id) }}" class="btn btn-info"><span class="glyphicon glyphicon-book"></span> BACA</a></center></td>
-                        
+                        <td><center><a href="{{ url('transaksi',$manekin->id) }}" class="btn btn-success">Beli</center></td>
                     </tr>
                 <?php $i++; ?>
                 @endforeach

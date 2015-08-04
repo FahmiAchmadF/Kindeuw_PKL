@@ -20,8 +20,6 @@ class TabelBooks extends Migration {
 			$table->string('Penerbit', 35);
 			$table->text('Deskripsi');
 			$table->integer('Banyak_halaman');
-			$table->string('Bahasa', 30);
-			$table->string('Genre', 30);
 			$table->integer('Harga');
 			$table->timestamps();
 		});

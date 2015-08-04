@@ -37,3 +37,8 @@ Route::get('Kindeuw/pdf/pdf/{id}', 'KindeuwController@pdf');
 Route::get('Kindeuw/excel/excel', 'KindeuwController@excel');
 Route::get('Kindeuw/daftar/akun', 'KindeuwController@daftar');
 Route::post('Kindeuw/daftar/akun/cek', 'KindeuwController@regis');
+
+Route::get('transaksi/{id}', 'KindeuwController@transaksi');
+Route::post('transaksi/proses', 'KindeuwController@posttransaksi');
+Route::get('transaksiku/caritransaksiku', 'KindeuwController@caritransaksiku');
+Route::post('transaksiku', 'KindeuwController@hasilcaritransaksi');

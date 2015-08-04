@@ -6,6 +6,8 @@ use Kindeuw\Kindeuw;
 use Kindeuw\Model_User;
 use Kindeuw\Bahasa;
 use Kindeuw\Genre;
+use Kindeuw\Kurir;
+use Kindeuw\Transaksi;
 use DB;
 use Carbon\Carbon;
 use Input;
@@ -17,6 +19,7 @@ use PDF;
 use Excel;
 use Hash;
 use Auth;
+use Response;
 
 class KindeuwController extends Controller {
 
@@ -59,30 +62,15 @@ class KindeuwController extends Controller {
 	}
 
 	public function store(Requests\KindeuwRequest $request){
-		$bahasa = $request->get('Bahasa');
-        $genre = $request->get('Genre');
-        $hasilgenre = DB::select('select opsi_genre from genre where id= ?', [$genre]);
-        $hasilgenre1 = $hasilgenre[0]->opsi_genre;
-        $hasilbahasa = DB::select('select opsi_bahasa from bahasa where id= ?', [$bahasa]);
-        $hasilbahasa1 = $hasilbahasa[0]->opsi_bahasa;
-
-        $kindeuw = new Kindeuw([
-            'id' => $request->get('id'),
-            'stok' => $request->get('stok'),
-            'Judul' => $request->get('Judul'),
-            'Penulis' => $request->get('Penulis'),
-            'Penerbit'  => $request->get('Penerbit'),
-            'Deskripsi' => $request->get('Deskripsi'),
-            'Banyak_halaman' => $request->get('Banyak_halaman'),
-            'Bahasa' => $hasilbahasa1,
-            'Genre' => $hasilgenre1,
-            'Harga' => $request->get('Harga'),
-            'created_at' => Carbon::now(),
-            ]);
+		$bahasa = $request->input('Bahasa');
+        $genre = $request->input('Genre');
         
 
-        $kindeuw->save();
+        $kindeuw = Kindeuw::create($request->all());
+        $kindeuw->Bahasa()->attach($bahasa);
+        $kindeuw->Genre()->attach($genre);
 
+        
 
         $file = Input::file('image');
         $username = Auth::user()->username;
@@ -101,8 +89,10 @@ class KindeuwController extends Controller {
 
 	public function baca($id){
 		$show = Kindeuw::find($id);
+        $Bahasa = $show->bahasa_nya();
+        $Genre = $show->genre_nya();
 	   
-		return view('Kindeuw.Baca', compact('show'));
+		return view('Kindeuw.Baca', compact('show', 'Bahasa', 'Genre'));
 	}
 
 	public function hapus($id){
@@ -114,15 +104,7 @@ class KindeuwController extends Controller {
         return view('Kindeuw.Administrator.Index', compact('username', 'manekinds'));
 	}
 
-    public  function ubah($id, Requests\KindeuwRequest $request){
-        $bahasa = $request->get('Bahasa');
-        $genre = $request->get('Genre');
-        $hasilgenre = DB::select('select opsi_genre from genre where id= ?', [$genre]);
-        $hasilgenre1 = $hasilgenre[0]->opsi_genre;
-        $hasilbahasa = DB::select('select opsi_bahasa from bahasa where id= ?', [$bahasa]);
-        $hasilbahasa1 = $hasilbahasa[0]->opsi_bahasa;        
-
-        
+    public  function ubah($id, Requests\KindeuwRequest $request){    
         $req = $request->all();
         //dd($req);
         
@@ -136,8 +118,8 @@ class KindeuwController extends Controller {
             if ($jojon == null) {
 
                 $hasil->update($req);
-                    //$hasil->sync($request->input('Bahasa'));
-                    //$hasil->sync($request->input('Genre'));
+                    $hasil->Bahasa()->sync($request->input('Bahasa'));
+                    $hasil->Genre()->sync($request->input('Genre'));
 
             }else{
                 File::delete('image/' . $id . '.png');
@@ -149,8 +131,8 @@ class KindeuwController extends Controller {
                 Image::make($gambar->getRealPath())->resize('600', '380')->save('image/'.$namafile);
 
                 $hasil->update($req); 
-                // $hasil->sync($request->input('Bahasa'));
-                // $hasil->sync($request->input('Genre'));       
+                    $hasil->Bahasa()->sync($request->input('Bahasa'));
+                    $hasil->Genre()->sync($request->input('Genre'));       
             }
 
         
@@ -164,8 +146,11 @@ class KindeuwController extends Controller {
         $username = Auth::user()->username;
         $opsibahasa=Bahasa::lists('opsi_bahasa','id');
         $opsigenre=Genre::lists('opsi_genre','id');
+        $inibahasa=$edit->opsibahasa();
+        $inigenre=$edit->opsigenre();
+
         //dd($inibahasa);
-        return view('Kindeuw.Administrator.Ubah', compact('edit', 'username', 'opsibahasa', 'opsigenre'));
+        return view('Kindeuw.Administrator.Ubah', compact('edit', 'username', 'opsibahasa', 'opsigenre', 'inibahasa', 'inigenre'));
     }
 
     public function about(){
@@ -214,4 +199,74 @@ class KindeuwController extends Controller {
 
 })->export('xls');
     }
+
+    public function transaksi($id){
+        $opsikurir = Kurir::lists('opsi_kurir', 'id');
+        $show = Kindeuw::find($id);
+        return view('Kindeuw.Transaksi', compact('opsikurir','show'));
+    }
+
+    public function posttransaksi(Requests\Transaksi $request){
+
+        
+        $jumlah = $request->input('jumlah_beli');
+        $harga = $request->input('Harga');
+        $total = $jumlah*$harga;
+        $kurir = $request->input('kurir');
+    
+        $req = new Transaksi([
+            'id_buku' => $request->get('id_buku'),
+            'email' => $request->get('email'),
+            'nama' => $request->get('nama'),
+            'alamat' => $request->get('alamat'),
+            'no_telp' => $request->get('no_telp'),
+            'Judul' => $request->get('Judul'),
+            'Harga' => $request->get('Harga'),
+            'jumlah_beli' => $request->get('jumlah_beli'),
+            'created_at' => Carbon::now(),
+            ]);
+        $req->status_transfer='0';
+        $req->status_admin_terima='0';
+        $req->status_terima_barang='0';
+        $req->Total=$total;
+
+        $req->save();
+        $req->Kurir()->attach($kurir);
+        $id=$request->get('id_buku');
+        $stokbuku = Kindeuw::find($id);
+        $stok = $stokbuku->stok;
+        $hasilstok = $stok-$jumlah;
+        DB::table('books')->where('id',[$id])->update(['stok' => $hasilstok]);
+        $myid=$req->id;
+        return view('Kindeuw.TransaksiSukses', compact('myid'));
+        
+    }
+
+    public function caritransaksiku(){
+
+        return view('Kindeuw.Caritransaksiku');
+    }
+
+    public function hasilcaritransaksi(){
+        $id = Request::input('idtransaksi');
+        //dd($id);
+         if ($id == '') {
+             return view('Kindeuw.Caritransaksiku');            
+         }elseif ($id == ' ') {
+             return view('Kindeuw.Caritransaksiku');
+         }else {
+             $products = DB::table('transaksi');
+             $results = $products->where('id', [$id])
+                 ->get();
+
+                $kurir = Transaksi::find($id);
+                $kurir->OpsiKurir();
+        }  dd($kurir); 
+            // if ($results == null) {
+            //         return view('Kindeuw.Caritransaksiku', compact('results', 'id', 'kurir'));
+            //     }else{
+            //         return view('Kindeuw.Transaksiku', compact('results', 'id', 'kurir'));
+            //     }
+    }
+
 }

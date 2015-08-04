@@ -9,23 +9,28 @@
 				<img src="{{ asset('image')}}/{{ $show['id'] }}.png" class="img-rounded"/>
 			</center><br>
 		<div class="col-lg-12 col-xs-12">
-			<table class="table">
-			<tr><th>ID</th>
-				<td><h3>{{ $show['id'] }}</h3></td>
-			</tr>
-			<tr><th>Judul</th>
-				<td><h3>{{ $show['Judul'] }}</h3></td>
-			</tr>
-			<tr><th>Penerbit</th>
-				<td><h3>{{ $show['Penerbit'] }}</h3></td>
-			</tr>
-			<tr><th>Harga</th>
-				<td><h3>Rp.{{ $format }}</h3></td>
-			</tr>
-			<tr><th>Deskripsi</th>
-				<td><h3>{{ $show['Deskripsi'] }}</h3></td>
-			</tr>
-			</table>
+			
+			<p>ID : {{ $show['id'] }}</p>
+				<p>Judul : {{ $show['Judul'] }}</p>
+					<p>Penulis : {{ $show['Penulis'] }}</p>
+						<p>Penerbit : {{ $show['Penerbit'] }}</p>
+							
+								<p>Deskripsi : {{ $show['Deskripsi'] }}</p>
+								
+								<p>Stok : {{ $show['stok'] }}</p>
+								<p>Banyak Halaman : {{ $show['Banyak_halaman'] }}</p>
+								<p>Harga : Rp.{{ $format }}</p>
+								<div class="form-group">
+								<p>Bahasa :</p>@foreach($Bahasa as $bahasa)
+								<li>{{ $bahasa }}</li>
+								@endforeach
+								</div>
+								<div class="form-group">
+								<p>Genre :</p>@foreach($Genre as $genre)
+								<li>{{ $genre }}</li>
+								@endforeach
+								</div>
+			
 		</div>
 		<div class="col-sm-8">
 			<a href="{{ url('Kindeuw/pdf/pdf',$show->id) }}" class="btn btn-default btn-block pdf"  target="_blank"><span class="glyphicon glyphicon-file"></span> PDF</a>
