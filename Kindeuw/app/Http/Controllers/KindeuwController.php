@@ -8,6 +8,7 @@ use Kindeuw\Bahasa;
 use Kindeuw\Genre;
 use Kindeuw\Kurir;
 use Kindeuw\Transaksi;
+use Kindeuw\Konfirmasi;
 use DB;
 use Carbon\Carbon;
 use Input;
@@ -290,6 +291,60 @@ class KindeuwController extends Controller {
                     
                     return view('Kindeuw.Transaksiku', compact('resultsclear', 'id', 'kurir', 'status_transfer', 'status_admin_terima', 'status_terima_barang'));
                 }
+    }
+
+    public function konfirmasipembayaran($id){
+        return view('Kindeuw.KonfirmasiPembayaran', compact('id'));
+        
+        //dd($email);
+    }
+
+    public function konfirmasipost(Requests\Konfirmasi $request){
+        $id = $request->get('id_transaksi');
+        $email = $request->get('email');
+        $cekid = DB::select('select * from transaksi where id = ?', [$id])[0];
+          $emailtransaksi = $cekid->email;
+          if ($emailtransaksi == $email) {
+           $inputan = new Konfirmasi([
+            'id_transaksi' => $request->get('id_transaksi'),
+            'nama_pemilik_rekening' => $request->get('nama_pemilik_rekening'),
+            'nama_bank' => $request->get('nama_bank'),
+            'nomor_rekening' => $request->get('nomor_rekening'),
+            'transfer_ke_no' => $request->get('transfer_ke_no'),
+            'email' => $request->get('email'),
+            'created_at' => Carbon::now()
+            ]);
+        $inputan->save();
+
+        DB::table('transaksi')->where('id',[$id])->update(['status_transfer' => 1]);
+
+        \Session::flash('Konfirmasi','Berhasil Mengkonfirmasi Pembayaran. Terima Kasih Dan Selamat Belanja~');
+            return redirect('Kindeuw');   
+          }else{
+            \Session::flash('Konfirmasigagal','Konfirmasi Pembayaran Gagal, Silahkan Periksa Email Anda');
+            return redirect('konfirmasi/pembayaran/', $id);
+          }
+        
+    }
+
+    public function konfirmasipenerimaanbarang($id){
+
+        DB::table('transaksi')->where('id',[$id])->update(['status_terima_barang' => 1]);
+        \Session::flash('Konfirmasi Terima Barang','Berhasil Mengkonfirmasi Penerimaan Barang. Terima Kasih Dan Selamat Belanja~');
+        return redirect('Kindeuw');
+    }
+
+    public function listtransaksi(){
+        $username = Auth::user()->username;
+        $listtransaksi = Transaksi::paginate(10);
+        $cobalist = DB::table('transaksi')->get();
+        //dd($cobalist);
+        return view('Kindeuw.Administrator.ListTransaksi', compact('listtransaksi', 'username', 'cobalist'));
+    }
+
+    public function terimatransaksi($id){
+        DB::table('transaksi')->where('id',[$id])->update(['status_admin_terima' => 1]);
+        return redirect('Admin/list/transaksi');
     }
 
 }

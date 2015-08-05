@@ -42,3 +42,8 @@ Route::get('transaksi/{id}', 'KindeuwController@transaksi');
 Route::post('transaksi/proses', 'KindeuwController@posttransaksi');
 Route::get('transaksiku/caritransaksiku', 'KindeuwController@caritransaksiku');
 Route::post('transaksiku', 'KindeuwController@hasilcaritransaksi');
+Route::get('konfirmasi/pembayaran/{id}', 'KindeuwController@konfirmasipembayaran');
+Route::post('konfirmasi/proses', 'KindeuwController@konfirmasipost');
+Route::get('konfirmasi/penerimaanbarang/{id}', 'KindeuwController@konfirmasipenerimaanbarang');
+Route::get('Admin/list/transaksi', 'KindeuwController@listtransaksi');
+Route::get('Admin/transaksi/terima/transfer/{id}', 'KindeuwController@terimatransaksi');

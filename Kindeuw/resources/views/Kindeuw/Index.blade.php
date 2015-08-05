@@ -13,6 +13,14 @@
     @if(Session::has('hapus_data'))
         <div class="alert alert-success"><span class="glyphicon glyphicon-ok"></span> {{ Session::get('hapus_data') }}</div>
     @endif
+
+    @if(Session::has('Konfirmasi'))
+        <div class="alert alert-success"><span class="glyphicon glyphicon-ok"></span> {{ Session::get('Konfirmasi') }}</div>
+    @endif
+
+    @if(Session::has('Konfirmasi Terima Barang'))
+        <div class="alert alert-success"><span class="glyphicon glyphicon-ok"></span> {{ Session::get('Konfirmasi Terima Barang') }}</div>
+    @endif
 		<table class="table table-striped table-bordered table-hover">
 			<tr>
                 <th>No.</th>

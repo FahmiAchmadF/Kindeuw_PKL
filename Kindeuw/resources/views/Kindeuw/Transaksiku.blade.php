@@ -96,10 +96,10 @@
 	
 	<div class="row">
 	<div class="col-lg-3 col-xs-3">
-		<a href="{{ url('konfirmasi/pembayaran{id}') }}" class="btn btn-success">Bayar</a>
+		<a href="{{ url('konfirmasi/pembayaran',$resultsclear->id) }}" class="btn btn-success">Bayar</a>
 	</div>
 	<div class="col-lg-3 col-xs-3">
-		<a href="{{ url('konfirmasi/penerimaanbarang{id}') }}" class="btn btn-info">Konfirmasi Barang Diterima</a>
+		<a href="{{ url('konfirmasi/penerimaanbarang',$resultsclear->id) }}" class="btn btn-info">Konfirmasi Barang Diterima</a>
 	</div>
 	</div>
 
