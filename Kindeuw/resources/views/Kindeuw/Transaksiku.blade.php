@@ -1,19 +1,110 @@
 @extends('Kindeuw.App')
 @section('kontensatu')
+
 <div class="col-lg-12 col-xs-12">
+	<div class="col-lg-12 col-xs-12">
+	<div class="row">
+	<div class="col-lg-3 col-xs-3">ID Transaksi :</div>
+	<div class="col-lg-8 col-xs-8"> {{ $resultsclear->id }}</div>
+	</div>
+	</div>
 	
-	<p>ID Transaksi : {{ $results->id }}</p>
-	<p>Email Pemesan: {{ $results->email }}</p>
-	<p>Nama Pemesan : {{ $results->nama }}</p>
-	<p>Alamat Pemesan : {{ $results->alamat }}</p>
-	<p>No Telepon : {{ $results->no_telp }}</p>
-	<p>Status Pembayaran : {{ $results->status_transfer }}</p>
-	<p>Status Penerimaan Pembayaran : {{ $results->status_admin_terima }}</p>
-	<p>Status Penerimaan Barang : {{ $results->status_terima_barang }}</p>
-	<p>Judul Buku : {{ $results->Judul }}</p>
-	<p>Harga Buku : Rp. {{ $results->Harga }}</p>
-	<p>Jumlah Pembelian Buku : {{ $results->jumlah_beli }}</p>
-	<p>Total : Rp. {{ $results->Total }}</p>
-	<p>Partner Kurir : $kurir</p>
+	<div class="col-lg-12 col-xs-12">
+	<div class="row">
+	<div class="col-lg-3 col-xs-3">Email Pemesan :</div>
+	<div class="col-lg-8 col-xs-8"> {{ $resultsclear->email }}</div>
+	</div>
+	</div>
+
+	<div class="col-lg-12 col-xs-12">
+	<div class="row">
+	<div class="col-lg-3 col-xs-3">Nama Pemesan :</div>
+	<div class="col-lg-8 col-xs-8"> {{ $resultsclear->nama }}</div>
+	</div>
+	</div>
+	
+	<div class="col-lg-12 col-xs-12">
+	<div class="row">
+	<div class="col-lg-3 col-xs-3">Alamat Pemesan :</div>
+	<div class="col-lg-8 col-xs-8"> {{ $resultsclear->alamat }}</div>
+	</div>
+	</div>
+	
+	<div class="col-lg-12 col-xs-12">
+	<div class="row">
+	<div class="col-lg-3 col-xs-3">No Telepon :</div>
+	<div class="col-lg-8 col-xs-8"> {{ $resultsclear->no_telp }}</div>
+	</div>
+	</div>
+	
+	<div class="col-lg-12 col-xs-12">
+	<div class="row">
+	<div class="col-lg-3 col-xs-3">Status Pembayaran :</div>
+	<div class="col-lg-8 col-xs-8"> {{ $status_transfer }}</div>
+	</div>
+	</div>
+	
+	<div class="col-lg-12 col-xs-12">
+	<div class="row">
+	<div class="col-lg-3 col-xs-3">Status Penerimaan Pembayaran :</div>
+	<div class="col-lg-8 col-xs-8"> {{ $status_admin_terima }}</div>
+	</div>
+	</div>
+
+	<div class="col-lg-12 col-xs-12">
+	<div class="row">
+	<div class="col-lg-3 col-xs-3">Status Penerimaan Barang :</div>
+	<div class="col-lg-8 col-xs-8"> {{ $status_terima_barang }}</div>
+	</div>
+	</div>
+
+	<div class="col-lg-12 col-xs-12">
+	<div class="row">
+	<div class="col-lg-3 col-xs-3">Judul Buku :</div>
+	<div class="col-lg-8 col-xs-8"> {{ $resultsclear->Judul }}</div>
+	</div>
+	</div>
+	
+	<div class="col-lg-12 col-xs-12">
+	<div class="row">
+	<div class="col-lg-3 col-xs-3">Harga Buku :</div>
+	<div class="col-lg-8 col-xs-8"> Rp. {{ $resultsclear->Harga }}</div>
+	</div>
+	</div>
+	
+	<div class="col-lg-12 col-xs-12">
+	<div class="row">
+	<div class="col-lg-3 col-xs-3">Jumlah Pembelian Buku :</div>
+	<div class="col-lg-8 col-xs-8"> {{ $resultsclear->jumlah_beli }}</div>
+	</div>
+	</div>
+
+	<div class="col-lg-12 col-xs-12">
+	<div class="row">
+	<div class="col-lg-3 col-xs-3">Total :</div>
+	<div class="col-lg-8 col-xs-8"> Rp. {{ $resultsclear->Total }}</div>
+	</div>
+	</div>
+
+	<div class="col-lg-12 col-xs-12">
+	<div class="row">
+	<div class="col-lg-3 col-xs-3">Partner Kurir :</div>
+	<div class="col-lg-8 col-xs-8"> {{ $kurir }}</div>
+	</div>
+	</div>
+
+	
+	<div class="row">
+	<div class="col-lg-3 col-xs-3">
+		<a href="{{ url('konfirmasi/pembayaran{id}') }}" class="btn btn-success">Bayar</a>
+	</div>
+	<div class="col-lg-3 col-xs-3">
+		<a href="{{ url('konfirmasi/penerimaanbarang{id}') }}" class="btn btn-info">Konfirmasi Barang Diterima</a>
+	</div>
+	</div>
+
+
 </div>
+
+<script type="text/javascript" src=""></script>
 @stop

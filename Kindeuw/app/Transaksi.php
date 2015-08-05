@@ -15,14 +15,7 @@ class Transaksi extends Model {
 	'Judul',
 	'Harga',
 	'jumlah_beli',
+	'kurir'
 	];
-
-	public function Kurir(){
-		return $this->belongsToMany('Kindeuw\Kurir', 'transaksi_kurir', 'id_transaksi', 'id_kurir');
-	}
-
-	public function OpsiKurir(){
-		return $this->Kurir->lists('opsi_kurir');
-	}
 
 }

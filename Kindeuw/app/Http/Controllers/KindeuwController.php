@@ -212,7 +212,6 @@ class KindeuwController extends Controller {
         $jumlah = $request->input('jumlah_beli');
         $harga = $request->input('Harga');
         $total = $jumlah*$harga;
-        $kurir = $request->input('kurir');
     
         $req = new Transaksi([
             'id_buku' => $request->get('id_buku'),
@@ -223,6 +222,7 @@ class KindeuwController extends Controller {
             'Judul' => $request->get('Judul'),
             'Harga' => $request->get('Harga'),
             'jumlah_beli' => $request->get('jumlah_beli'),
+            'kurir' => $request->input('kurir'),
             'created_at' => Carbon::now(),
             ]);
         $req->status_transfer='0';
@@ -231,7 +231,6 @@ class KindeuwController extends Controller {
         $req->Total=$total;
 
         $req->save();
-        $req->Kurir()->attach($kurir);
         $id=$request->get('id_buku');
         $stokbuku = Kindeuw::find($id);
         $stok = $stokbuku->stok;
@@ -249,24 +248,48 @@ class KindeuwController extends Controller {
 
     public function hasilcaritransaksi(){
         $id = Request::input('idtransaksi');
-        //dd($id);
+        
          if ($id == '') {
              return view('Kindeuw.Caritransaksiku');            
          }elseif ($id == ' ') {
              return view('Kindeuw.Caritransaksiku');
          }else {
              $products = DB::table('transaksi');
-             $results = $products->where('id', [$id])
-                 ->get();
+             $results = $products->where('id', [$id])->get();
+             $resultsclear = $results[0];
+                $idkurir = $resultsclear->kurir;
+                $kurir = DB::select('select opsi_kurir from kurir where id = ?', [$resultsclear->kurir])[0]->opsi_kurir;
+        }
 
-                $kurir = Transaksi::find($id);
-                $kurir->OpsiKurir();
-        }  dd($kurir); 
-            // if ($results == null) {
-            //         return view('Kindeuw.Caritransaksiku', compact('results', 'id', 'kurir'));
-            //     }else{
-            //         return view('Kindeuw.Transaksiku', compact('results', 'id', 'kurir'));
-            //     }
+        $stattrans=$resultsclear->status_transfer;
+        $staadter=$resultsclear->status_admin_terima;
+        $staterbar=$resultsclear->status_terima_barang;
+        $status_transfer= '';
+        $status_admin_terima= '';
+        $status_terima_barang= '';
+
+            if ($results == null) {
+                    return view('Kindeuw.Caritransaksiku', compact('resultsclear', 'id', 'kurir'));
+                }else{
+                    if ($stattrans=='0') {
+                        $status_transfer='BELUM MEMBAYAR';
+                        }
+                        elseif ($stattrans=='1'){
+                            $status_transfer='SUDAH MEMBAYAR';
+                        }
+                    if ($staadter=='0'){
+                        $status_admin_terima='BELUM DITERIMA';
+                        }elseif ($staadter=='1'){
+                            $status_admin_terima='SUDAH DITERIMA';
+                        }
+                    if ($staterbar=='0') {
+                        $status_terima_barang='BARANG BELUM DITERIMA';
+                        }elseif ($staterbar=='1') {
+                            $status_terima_barang='BARANG SUDAH DITERIMA';
+                        }
+                    
+                    return view('Kindeuw.Transaksiku', compact('resultsclear', 'id', 'kurir', 'status_transfer', 'status_admin_terima', 'status_terima_barang'));
+                }
     }
 
 }
