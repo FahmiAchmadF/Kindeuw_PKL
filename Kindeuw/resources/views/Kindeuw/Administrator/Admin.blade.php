@@ -38,6 +38,9 @@
 		<a href="{{ url('Admin/tambah/kurir') }}" class="btn btn-dark btn-lg btn-block bordernol2"><span class="glyphicon glyphicon-plus"></span> TAMBAH KURIR</a>
 	</div>
 	<div class="col-lg-12 col-xs-12 paddingnol">
+		<a href="{{ url('Admin/tambah/kota') }}" class="btn btn-dark btn-lg btn-block bordernol2"><span class="glyphicon glyphicon-plus"></span> TAMBAH KOTA</a>
+	</div>
+	<div class="col-lg-12 col-xs-12 paddingnol">
 		<a href="{{ url('Admin/index') }}" class="btn btn-dark btn-lg btn-block bordernol2"><span class="glyphicon glyphicon-plus"></span> BUKU</a>
 	</div>
 	<div class="col-lg-12 col-xs-12 paddingnol">

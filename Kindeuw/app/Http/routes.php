@@ -56,6 +56,8 @@ Route::get('Admin/tambah/bahasa/buku', 'KindeuwController@tambahbahasa');
 Route::post('Admin/tambah/bahasa/post', 'KindeuwController@tambahbahasapost');
 Route::get('Admin/tambah/kurir', 'KindeuwController@tambahkurir');
 Route::post('Admin/tambah/kurir/simpan', 'KindeuwController@tambahkurirpost');
+Route::get('Admin/tambah/kota', 'KindeuwController@tambahkota');
+Route::post('Admin/tambah/kota/simpan', 'KindeuwController@tambahkotapost');
 Route::get('genre/ubah/{id}', 'KindeuwController@ubahgenre');
 Route::put('genre/ubah/genre/{id}', array(
 	'uses' => 'KindeuwController@ubahgenrepost'));
@@ -69,3 +71,7 @@ Route::put('kurir/ubah/kurir/{id}', array(
 	'uses' => 'KindeuwController@ubahkurirpost'));
 Route::delete('kurir/hapus/kurir/{id}', array(
 	'uses' => 'KindeuwController@hapuskurir', 'as' => 'Kurir'));
+Route::get('kota/ubah/{id}', 'KindeuwController@ubahkota');
+Route::put('kota/ubah/kota/{id}', array(
+	'uses' => 'KindeuwController@ubahkotapost'));
+Route::delete('kota/hapus/kota/{id}', 'KindeuwController@hapuskota');

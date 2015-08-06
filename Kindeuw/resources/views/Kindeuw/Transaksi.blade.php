@@ -18,9 +18,13 @@
 			{!! Form::text('nama', null, ['class' => 'form-control', 'placeholder'=>'Nama Lengkap']) !!}
 			</div>
 				<div class="form-group">
-				{!! Form::label('alamat', 'Alamat Lengkap Dan Kota:') !!}
-				{!! Form::textarea('alamat', null, ['class' => 'form-control', 'placeholder'=>'Alamat Dan Kota Tujuan Pengiriman']) !!}
+				{!! Form::label('alamat', 'Alamat Lengkap') !!}
+				{!! Form::textarea('alamat', null, ['class' => 'form-control', 'placeholder'=>'Alamat Tujuan Pengiriman']) !!}
 				</div>
+					<div class="form-group">
+					{!! Form::label('kota', 'Kota:') !!}
+					{!! Form::select('kota', $opsikota1, null, ['class' => 'form-control']) !!}
+					</div>
 					<div class="form-group">
 					{!! Form::label('no_telp', 'Nomor Telepon :') !!}
 					{!! Form::text('no_telp', null, ['class' => 'form-control', 'placeholder'=>'Nomor Telepon Anda']) !!}

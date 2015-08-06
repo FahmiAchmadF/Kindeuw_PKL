@@ -17,6 +17,7 @@ class Transaksi extends Migration {
 			$table->string('email', 30);
 			$table->string('nama', 50);
 			$table->string('alamat', 160);
+			$table->string('kota', 30);
 			$table->string('no_telp', 12);
 			$table->string('status_transfer', 1);
 			$table->string('status_admin_terima', 1);

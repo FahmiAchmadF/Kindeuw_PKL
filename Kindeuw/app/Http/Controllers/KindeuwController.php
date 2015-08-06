@@ -9,6 +9,7 @@ use Kindeuw\Genre;
 use Kindeuw\Kurir;
 use Kindeuw\Transaksi;
 use Kindeuw\Konfirmasi;
+use Kindeuw\Kota;
 use DB;
 use Carbon\Carbon;
 use Input;
@@ -203,11 +204,16 @@ class KindeuwController extends Controller {
 
     public function transaksi($id){
         $opsikurir = Kurir::lists('opsi_kurir', 'id');
+        $opsikota1 = Kota::lists('opsi_kota', 'id');
         $show = Kindeuw::find($id);
-        return view('Kindeuw.Transaksi', compact('opsikurir','show'));
+        return view('Kindeuw.Transaksi', compact('opsikurir', 'show', 'opsikota1'));
     }
 
     public function posttransaksi(Requests\Transaksi $request){
+        $idkota = $request->get('kota');
+        $opsikota = select('select opsi_kota from kota where id = ?', [$idkota])[0];
+        $opsi_kota = $opsikota->opsi_kota;
+
         $id=$request->get('id_buku');
         $jumlah = $request->input('jumlah_beli');
         $stokbuku = Kindeuw::find($id);
@@ -227,6 +233,7 @@ class KindeuwController extends Controller {
             'email' => $request->get('email'),
             'nama' => $request->get('nama'),
             'alamat' => $request->get('alamat'),
+            'kota' => $opsi_kota,
             'no_telp' => $request->get('no_telp'),
             'Judul' => $request->get('Judul'),
             'Harga' => $request->get('Harga'),
@@ -519,6 +526,46 @@ class KindeuwController extends Controller {
         $username = Auth::user()->username;
         \Session::flash('hapus_data','Berhasil Menghapus Data');
         return redirect('Admin/tambah/kurir')->with('username', 'ngelists');
+
+    }
+
+    public function tambahkota(){
+        $username = Auth::user()->username;
+        $ngelists = Kota::paginate(10);
+        return view('Kindeuw.Administrator.TambahKota', compact('username', 'ngelists'));
+    }
+
+    public function tambahkotapost(Requests\Kota $request){
+        $inputan = $request->get('opsi_kota');
+        DB::insert('insert into kota set opsi_kota=?', [$inputan]);
+        \Session::flash('succes','Berhasil Menambah Kota');
+        return redirect()->back();
+    }
+
+    public function ubahkota($id){
+        $username = Auth::user()->username;
+        $opsi = Kota::find($id);
+        return view('Kindeuw.Administrator.UbahKota', compact('username', 'opsi'));
+
+    }
+
+    public function ubahkotapost($id, Requests\Kota $request){
+        $username = Auth::user()->username;
+
+        $inputan = $request->get('opsi_kota');
+
+        DB::table('kota')->where('id',[$id])->update(['opsi_kota' => $inputan]);
+        \Session::flash('succes','Berhasil Merubah Data');
+        return redirect('Admin/tambah/kota')->with('username');
+
+    }
+
+    public function hapuskota($id){
+        Kota::find($id)->delete();
+        $ngelists = Kota::paginate(10);
+        $username = Auth::user()->username;
+        \Session::flash('hapus_data','Berhasil Menghapus Data');
+        return redirect('Admin/tambah/kota')->with('username', 'ngelists');
 
     }
 
