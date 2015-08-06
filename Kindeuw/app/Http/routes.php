@@ -47,3 +47,25 @@ Route::post('konfirmasi/proses', 'KindeuwController@konfirmasipost');
 Route::get('konfirmasi/penerimaanbarang/{id}', 'KindeuwController@konfirmasipenerimaanbarang');
 Route::get('Admin/list/transaksi', 'KindeuwController@listtransaksi');
 Route::get('Admin/transaksi/terima/transfer/{id}', 'KindeuwController@terimatransaksi');
+Route::get('Admin/transaksiuser/{id}', 'KindeuwController@detailtransaksiuser');
+Route::delete('Admin/transaksi/hapus/{id}', array(
+	'uses' => 'KindeuwController@delete', 'as' => 'Transakasi'));
+Route::get('Admin/tambah/genre', 'KindeuwController@tambahgenre');
+Route::post('Admin/tambah/genre/submit', 'KindeuwController@tambahgenrepost');
+Route::get('Admin/tambah/bahasa/buku', 'KindeuwController@tambahbahasa');
+Route::post('Admin/tambah/bahasa/post', 'KindeuwController@tambahbahasapost');
+Route::get('Admin/tambah/kurir', 'KindeuwController@tambahkurir');
+Route::post('Admin/tambah/kurir/simpan', 'KindeuwController@tambahkurirpost');
+Route::get('genre/ubah/{id}', 'KindeuwController@ubahgenre');
+Route::put('genre/ubah/genre/{id}', array(
+	'uses' => 'KindeuwController@ubahgenrepost'));
+Route::delete('genre/hapus/genre/{id}', 'KindeuwController@hapusgenre');
+Route::get('bahasa/ubah/{id}', 'KindeuwController@ubahbahasa');
+Route::put('bahasa/ubah/bahasa/{id}', array(
+	'uses' => 'KindeuwController@ubahbahasapost'));
+Route::delete('bahasa/hapus/bahasa/{id}', 'KindeuwController@hapusbahasa');
+Route::get('kurir/ubah/{id}', 'KindeuwController@ubahkurir');
+Route::put('kurir/ubah/kurir/{id}', array(
+	'uses' => 'KindeuwController@ubahkurirpost'));
+Route::delete('kurir/hapus/kurir/{id}', array(
+	'uses' => 'KindeuwController@hapuskurir', 'as' => 'Kurir'));

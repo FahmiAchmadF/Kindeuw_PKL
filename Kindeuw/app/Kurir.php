@@ -6,5 +6,7 @@ class Kurir extends Model {
 
 protected $table='kurir';
 
+protected $fillable = ['opsi_kurir'];
+
 
 }

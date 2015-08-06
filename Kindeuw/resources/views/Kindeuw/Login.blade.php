@@ -1,6 +1,9 @@
 @extends('Kindeuw.Null')
 @section('load')
 
+@if(Session::has('Logingagal'))
+        <div class="alert alert-danger"><span class="glyphicon glyphicon-remove-sign"></span> {{ Session::get('Logingagal') }}</div>
+    @endif
     <div class="container" style="margin-top:40px">
 		<div class="row">
 			<div class="col-sm-6 col-md-4 col-md-offset-4">
@@ -59,5 +62,13 @@
 		</div>
 	</div>
 
+@if ($errors->any())
+		<div class="alert alert-danger">
+		<center><h1>Tolong Perikasa Inputan Anda !</h1></center>
+			@foreach ($errors->all() as $error)
+				<p><span class="glyphicon glyphicon-remove-sign"></span> {{ $error }}</p>
+			@endforeach
+		</div>
+	@endif
 
 @stop

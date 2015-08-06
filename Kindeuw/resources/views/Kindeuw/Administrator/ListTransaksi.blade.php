@@ -2,6 +2,9 @@
 @section('kontensatu')
 
 <div class="col-lg-10 col-xs-10 col-lg-offset-2 col-xs-offset-2">
+@if(Session::has('hapus_data'))
+        <div class="alert alert-success"><span class="glyphicon glyphicon-ok"></span> {{ Session::get('hapus_data') }}</div>
+    @endif
 	<table class="table table-striped table-bordered table-hover">
 			<tr>
                 <th>No.</th>
@@ -14,7 +17,30 @@
 			</tr>
             <?php $i=1; ?>
             @foreach($listtransaksi as $list)
-                    
+                    <?php $statustransfer=$list->status_transfer; 
+                    	$statusadminterima=$list->status_admin_terima;
+                    	$statusterimabarang=$list->status_terima_barang;
+                    		$transfer='';
+                    		$adminterima='';
+                    		$terima='';
+                    		?>
+                    @if($statustransfer=='1')
+                    <?php $transfer='Sudah Membayar'; ?>
+                    @else
+                    <?php $transfer='Belum Membayar'; ?>
+                    @endif
+
+                    @if($statusadminterima=='1')
+					<?php $adminterima='Sudah Diterima'; ?>
+					@else
+					<?php $adminterima='Belum Diterima'; ?>
+                    @endif
+
+                    @if($statusterimabarang)
+					<?php $terima='Barang Sudah Diterima'; ?>
+					@else
+					<?php $terima='Barang Belum Diterima'; ?>
+                    @endif
                     <tr>
                         <td>
                            <?php echo $i; ?>
@@ -22,12 +48,12 @@
                         </td>
                         <td>{{ $list->id }}</td>
                         <td>{{ $list->nama }}</td>
-                        <td>{{ $list->status_transfer }}</td>
-                        <td>{{ $list->status_admin_terima }}</td>
-                        <td>{{ $list->status_terima_barang }}</td>
+                        <td><?php echo $transfer;?></td>
+                        <td><?php echo $adminterima;?></td>
+                        <td><?php echo $terima;?></td>
                         <td><center><a href="{{ url('Admin/transaksi/terima/transfer',$list->id) }}" class="btn btn-warning"><span class="glyphicon glyphicon-edit"></span> Terima Transfer</a></center></td>
-                        <td><center><a href="{{ url('Admin',$list->id) }}" class="btn btn-info"><span class="glyphicon glyphicon-book"></span> Detail</a></center></td>
-                        <td><center>{!! Form::open(['url' => ['Admin/hapus',$list->id], 'method' => 'delete']) !!}
+                        <td><center><a href="{{ url('Admin/transaksiuser',$list->id) }}" class="btn btn-info"><span class="glyphicon glyphicon-book"></span> Detail</a></center></td>
+                        <td><center>{!! Form::open(['url' => ['Admin/transaksi/hapus',$list->id], 'method' => 'delete']) !!}
                             <button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span> HAPUS</button>
                             {!! Form::close() !!}</center></td>
                     </tr>
@@ -35,6 +61,10 @@
                 @endforeach
 
 		</table>
+
+        <div class="form-group">
+           <center> {!! str_replace('/?', '?', $listtransaksi->render()) !!}</center>
+        </div>
 
 </div>
 

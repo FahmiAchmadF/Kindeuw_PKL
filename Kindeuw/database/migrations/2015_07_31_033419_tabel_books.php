@@ -15,7 +15,7 @@ class TabelBooks extends Migration {
 		Schema::create('books', function(Blueprint $table){
 			$table->increments('id');
 			$table->integer('stok');
-			$table->string('Judul', 30);
+			$table->string('Judul', 60);
 			$table->string('Penulis', 40);
 			$table->string('Penerbit', 35);
 			$table->text('Deskripsi');

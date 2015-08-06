@@ -25,9 +25,9 @@ class CustomLoginController extends Controller {
 		return view('Kindeuw.Login');
 	}
 
-	public function postlogin(){
-		$email = Request::input('email');
-		$password = Request::input('password');
+	public function postlogin(Requests\login $request){
+		$email = $request->get('email');
+		$password = $request->get('password');
 		
 		if(Auth::attempt(['email'=>$email, 'password'=>$password]))
 		{	
@@ -36,6 +36,7 @@ class CustomLoginController extends Controller {
 				$manekinds = Kindeuw::paginate(10);
 			 return view('Kindeuw.Administrator.Index', compact('manekinds', 'username'));
 		}else{
+			\Session::flash('Logingagal','Silahkan Periksa Email Dan Password Anda');
 			return redirect('index');
 		}
 	 }
@@ -52,7 +53,7 @@ class CustomLoginController extends Controller {
 		$Bahasa = $show->bahasa_nya();
         $Genre = $show->genre_nya();
 	    $username = Auth::user()->username;
-		return view('Kindeuw.Administrator.Baca', compact('show', 'username', 'Bahasa', 'Genre'));
+		return view('Kindeuw.Administrator.Baca', compact('show', 'username', 'Bahasa', 'Genre', 'stokhabis'));
 	}
 
 	public function cari(){

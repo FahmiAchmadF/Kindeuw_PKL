@@ -3,6 +3,14 @@
 <div class="col-lg-10 col-xs-10 col-lg-offset-2 col-xs-offset-2">
 	<?php $uang=$show['Harga'];
 			$format = number_format($uang, 0, '.', '.');
+
+			$stok = $show['stok'];
+			$stokhabis = '';
+			if ($stok=='0') {
+				$stokhabis = 'Habis';
+			}else{
+				$stokhabis = $stok;
+			}
 		?>
 		<div class="col-lg-5 col-xs-5">
 			<center>
@@ -19,7 +27,7 @@
 							
 								<p>Deskripsi : {{ $show['Deskripsi'] }}</p>
 								
-								<p>Stok : {{ $show['stok'] }}</p>
+								<p>Stok : {{ $stokhabis }}</p>
 								<p>Banyak Halaman : {{ $show['Banyak_halaman'] }}</p>
 								<p>Harga : Rp.{{ $format }}</p>
 								<div class="form-group">

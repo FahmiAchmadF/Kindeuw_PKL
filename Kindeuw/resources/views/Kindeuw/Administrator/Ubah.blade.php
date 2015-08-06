@@ -1,7 +1,7 @@
 @extends('Kindeuw.Administrator.Admin')
 @section('kontensatu')
   <div class="col-lg-10 col-xs-10 col-lg-offset-2 col-xs-offset-2">
-       {!! Form::open(['url' => ['Admin/ubah/lagi',$edit], 'method' => 'PUT', 'enctype' => 'multipart/form-data']) !!}
+       {!! Form::open(['url' => ['Admin/ubah/lagi',$edit->id], 'method' => 'PUT', 'enctype' => 'multipart/form-data']) !!}
        <div class="form-group">
            <label for="id">ID</label>
            <input type="text" class="form-control" id="id" value="{{$edit->id}}" readonly>

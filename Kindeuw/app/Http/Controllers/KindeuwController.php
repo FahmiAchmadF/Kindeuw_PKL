@@ -208,12 +208,20 @@ class KindeuwController extends Controller {
     }
 
     public function posttransaksi(Requests\Transaksi $request){
-
-        
+        $id=$request->get('id_buku');
         $jumlah = $request->input('jumlah_beli');
+        $stokbuku = Kindeuw::find($id);
+        $stok = $stokbuku->stok;
+        $hasilstok = $stok-$jumlah;
+        
+        
+        
         $harga = $request->input('Harga');
         $total = $jumlah*$harga;
-    
+        if ($jumlah>$stok) {
+            \Session::flash('OverBuy','Maaf Jumlah Pembelian Anda Melebihi Dari Stok Buku Kami. Transaksi Tidak Bisa Dilakukan !');
+            return redirect()->back();
+        }else{
         $req = new Transaksi([
             'id_buku' => $request->get('id_buku'),
             'email' => $request->get('email'),
@@ -232,13 +240,13 @@ class KindeuwController extends Controller {
         $req->Total=$total;
 
         $req->save();
-        $id=$request->get('id_buku');
-        $stokbuku = Kindeuw::find($id);
-        $stok = $stokbuku->stok;
-        $hasilstok = $stok-$jumlah;
+        
+        
+        
         DB::table('books')->where('id',[$id])->update(['stok' => $hasilstok]);
         $myid=$req->id;
         return view('Kindeuw.TransaksiSukses', compact('myid'));
+        }
         
     }
 
@@ -322,7 +330,7 @@ class KindeuwController extends Controller {
             return redirect('Kindeuw');   
           }else{
             \Session::flash('Konfirmasigagal','Konfirmasi Pembayaran Gagal, Silahkan Periksa Email Anda');
-            return redirect('konfirmasi/pembayaran/', $id);
+            return redirect()->back();
           }
         
     }
@@ -345,6 +353,173 @@ class KindeuwController extends Controller {
     public function terimatransaksi($id){
         DB::table('transaksi')->where('id',[$id])->update(['status_admin_terima' => 1]);
         return redirect('Admin/list/transaksi');
+    }
+
+    public function detailtransaksiuser($id){
+        $username = Auth::user()->username;
+
+        $products = DB::table('transaksi');
+             $results = $products->where('id', [$id])->get();
+             $resultsclear = $results[0];
+                $idkurir = $resultsclear->kurir;
+                $kurir = DB::select('select opsi_kurir from kurir where id = ?', [$resultsclear->kurir])[0]->opsi_kurir;
+
+        $resultsclear = Transaksi::find($id);
+
+        $stattrans=$resultsclear->status_transfer;
+        $staadter=$resultsclear->status_admin_terima;
+        $staterbar=$resultsclear->status_terima_barang;
+        $status_transfer= '';
+        $status_admin_terima= '';
+        $status_terima_barang= '';
+
+                    
+                    if ($stattrans=='0') {
+                        $status_transfer='BELUM MEMBAYAR';
+                        }
+                        elseif ($stattrans=='1'){
+                            $status_transfer='SUDAH MEMBAYAR';
+                        }
+                    if ($staadter=='0'){
+                        $status_admin_terima='BELUM DITERIMA';
+                        }elseif ($staadter=='1'){
+                            $status_admin_terima='SUDAH DITERIMA';
+                        }
+                    if ($staterbar=='0') {
+                        $status_terima_barang='BARANG BELUM DITERIMA';
+                        }elseif ($staterbar=='1') {
+                            $status_terima_barang='BARANG SUDAH DITERIMA';
+                        }
+
+        
+        return view('Kindeuw.Administrator.Transaksiuser', compact('resultsclear', 'kurir', 'username', 'status_transfer', 'status_admin_terima', 'status_terima_barang'));
+    }
+
+    public function delete($id){
+        $coba = Transaksi::find($id)->delete();
+        // dd($coba);
+        $listtransaksi = Transaksi::paginate(10);
+        $cobalist = DB::table('transaksi')->get();
+        $username = Auth::user()->username;
+        \Session::flash('hapus_data','Berhasil Menghapus Data');
+        return view('Kindeuw.Administrator.ListTransaksi', compact('username', 'listtransaksi', 'cobalist'));
+    }
+
+    public function tambahgenre(){
+        $username = Auth::user()->username;
+        $ngelists = Genre::paginate(10);
+        return view('Kindeuw.Administrator.TambahGenre', compact('username', 'ngelists'));
+    }
+
+    public function tambahgenrepost(Requests\Genre $request){
+        $inputan = $request->get('opsi_genre');
+        DB::insert('insert into genre set opsi_genre=?', [$inputan]);
+        \Session::flash('succes','Berhasil Menambah Genre');
+        return redirect()->back();
+    }
+
+    public function tambahbahasa(){
+        $username = Auth::user()->username;
+        $ngelists = Bahasa::paginate(10);
+        return view('Kindeuw.Administrator.TambahBahasa', compact('username', 'ngelists'));
+    }
+
+    public function tambahbahasapost(Requests\Bahasa $request){
+        $inputan = $request->get('opsi_bahasa');
+        DB::insert('insert into bahasa set opsi_bahasa=?', [$inputan]);
+        \Session::flash('succes','Berhasil Menambah Bahasa');
+        return redirect()->back();
+    }
+
+    public function tambahkurir(){
+        $username = Auth::user()->username;
+        $ngelists = Kurir::paginate(10);
+        return view('Kindeuw.Administrator.TambahKurir', compact('username', 'ngelists'));
+    }
+
+    public function tambahkurirpost(Requests\Kurir $request){
+        $inputan = $request->get('opsi_kurir');
+        DB::insert('insert into kurir set opsi_kurir=?', [$inputan]);
+        \Session::flash('succes','Berhasil Menambah Kurir');
+        return redirect()->back();
+    }
+
+    public function ubahgenre($id){
+        $username = Auth::user()->username;
+            $opsi = Genre::find($id);
+        return view('Kindeuw.Administrator.UbahGenre', compact('username', 'opsi'));
+    }
+
+    public function ubahgenrepost($id, Requests\Genre $request){
+        $username = Auth::user()->username;
+
+        $inputan = $request->get('opsi_genre');
+
+        DB::table('genre')->where('id',[$id])->update(['opsi_genre' => $inputan]);
+        \Session::flash('succes','Berhasil Merubah Data');
+        return redirect('Admin/tambah/genre')->with('username');
+    }
+
+    public function hapusgenre($id){
+        Genre::find($id)->delete();
+        $ngelists = Genre::paginate(10);
+        $username = Auth::user()->username;
+        \Session::flash('hapus_data','Berhasil Menghapus Data');
+        return redirect('Admin/tambah/genre')->with('username', 'ngelists');
+    }
+
+    public function ubahbahasa($id){
+        $username = Auth::user()->username;
+        $opsi = Bahasa::find($id);
+        return view('Kindeuw.Administrator.UbahBahasa', compact('username', 'opsi'));
+    }
+
+    public function ubahbahasapost($id, Requests\Bahasa $request){
+
+        $username = Auth::user()->username;
+
+        $inputan = $request->get('opsi_bahasa');
+
+        DB::table('bahasa')->where('id',[$id])->update(['opsi_bahasa' => $inputan]);
+        \Session::flash('succes','Berhasil Merubah Data');
+        return redirect('Admin/tambah/bahasa/buku')->with('username');
+
+    }
+
+    public function hapusbahasa($id){
+        Bahasa::find($id)->delete();
+        $ngelists = Bahasa::paginate(10);
+        $username = Auth::user()->username;
+        \Session::flash('hapus_data','Berhasil Menghapus Data');
+        return redirect('Admin/tambah/bahasa')->with('username', 'ngelists');
+
+    }
+
+    public function ubahkurir($id){
+        $username = Auth::user()->username;
+        $opsi = Kurir::find($id);
+        return view('Kindeuw.Administrator.UbahKurir', compact('username', 'opsi'));
+
+    }
+
+    public function ubahkurirpost($id, Requests\Kurir $request){
+        $username = Auth::user()->username;
+
+        $inputan = $request->get('opsi_kurir');
+
+        DB::table('kurir')->where('id',[$id])->update(['opsi_kurir' => $inputan]);
+        \Session::flash('succes','Berhasil Merubah Data');
+        return redirect('Admin/tambah/kurir')->with('username');
+
+    }
+
+    public function hapuskurir($id){
+        Kurir::find($id)->delete();
+        $ngelists = Kurir::paginate(10);
+        $username = Auth::user()->username;
+        \Session::flash('hapus_data','Berhasil Menghapus Data');
+        return redirect('Admin/tambah/kurir')->with('username', 'ngelists');
+
     }
 
 }

@@ -1,6 +1,9 @@
 @extends('Kindeuw.App')
 @section('kontensatu')
 <div class="col-lg-12 col-xs-12">
+@if(Session::has('OverBuy'))
+    <div class="alert alert-danger"><span class="glyphicon glyphicon-remove-sign"></span> {{ Session::get('OverBuy') }}</div>
+@endif
 	{!! Form::open(['url'=>'transaksi/proses', 'method'=>'POST']) !!}
 <div class="form-group">
 {!! Form::hidden('id_buku', $show->id) !!}

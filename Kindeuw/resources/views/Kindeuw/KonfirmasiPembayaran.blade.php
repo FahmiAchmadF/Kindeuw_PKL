@@ -1,6 +1,11 @@
 @extends('Kindeuw.App')
 @section('kontensatu')
 <div class="col-lg-12 col-xs-12">
+
+    @if(Session::has('Konfirmasigagal'))
+        <div class="alert alert-danger"><span class="glyphicon glyphicon-sign"></span> {{ Session::get('Konfirmasigagal') }}</div>
+    @endif
+
 	{!! Form::open(['url'=>['konfirmasi/proses'], 'method'=>'POST']) !!}
 		{!! Form::hidden('id_transaksi', $id) !!}
 		<div class="form-group">

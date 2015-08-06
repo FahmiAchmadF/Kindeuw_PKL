@@ -23,7 +23,7 @@ class KindeuwRequest extends Request {
 	{
 		return[
 		'stok' => 'required|min:1|numeric|max:9999999999',
-		'Judul' => 'required|min:5|max:30',
+		'Judul' => 'required|min:5|max:60',
 		'Penulis' => 'required|min:5|max:40',
 		'Penerbit' => 'required|min:5|max:35',
 		'Deskripsi' => 'required|min:25',

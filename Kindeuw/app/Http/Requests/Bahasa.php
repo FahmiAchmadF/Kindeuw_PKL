@@ -2,7 +2,7 @@
 
 use Kindeuw\Http\Requests\Request;
 
-class login extends Request {
+class Bahasa extends Request {
 
 	/**
 	 * Determine if the user is authorized to make this request.
@@ -22,8 +22,7 @@ class login extends Request {
 	public function rules()
 	{
 		return [
-			'email' => 'required|min:10|max:30',
-			'password' => 'required|min:6|max:30'
+			'opsi_bahasa' => 'required|min:3|max:30|string'
 		];
 	}
 
