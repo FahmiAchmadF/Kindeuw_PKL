@@ -1,6 +1,6 @@
 @extends('Kindeuw.Administrator.Admin')
 @section('kontensatu')
-<div class="col-lg-10 col-xs-10 col-lg-offset-2 col-xs-offset-2">
+
 	@if(Session::has('succes'))
         <div class="alert alert-success"><span class="glyphicon glyphicon-success"></span> {{ Session::get('succes') }}</div>
     @endif
@@ -50,5 +50,5 @@
 			@endforeach
 		</div>
 	@endif
-	</div>
+
 @stop

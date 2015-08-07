@@ -1,6 +1,11 @@
 @extends('Kindeuw.Administrator.Admin')
 @section('kontensatu')
-<div class="col-lg-10 col-xs-10 col-lg-offset-2 col-xs-offset-2">
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+                        <strong> {{ $show->Judul }} </strong>
+                    </div>
+                    <div class="panel-body">
 	<?php $uang=$show['Harga'];
 			$format = number_format($uang, 0, '.', '.');
 
@@ -40,21 +45,16 @@
 								<li>{{ $genre }}</li>
 								@endforeach
 								</div>
-			</div>
-			
-			
-				
-			
-				
-			
-			
-		
-		<div class="col-sm-8">
-			<a href="{{ url('Kindeuw/pdf/pdf',$show->id) }}" class="btn btn-default btn-block pdf"  target="_blank"><span class="glyphicon glyphicon-file"></span> PDF</a>
-		</div>
-    <div class="col-sm-4">
-        <a href="{{ url('Admin/index')  }}" class="btn btn-primary btn-block"><span class="glyphicon glyphicon-menu-left"></span> Kembali</a>
+								</div>
+								</div>
+	<div class="form-group">			
+    <a href="{{ url('Admin/index')  }}" class="btn btn-flat"><span class="glyphicon glyphicon-menu-left"></span> Kembali</a>
     </div>
-</div>
+    <div class="panel-footer ">
+                        
+    </div>
 
+	
+	
+	</div>
 @stop

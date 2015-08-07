@@ -1,6 +1,6 @@
 @extends('Kindeuw.Administrator.Admin')
 @section('kontensatu')
-	<div class="col-lg-10 col-xs-10 col-lg-offset-2 col-xs-offset-2">
+
 	@if(Session::has('succes'))
         <div class="alert alert-success"><span class="glyphicon glyphicon-success"></span> {{ Session::get('succes') }}</div>
     @endif
@@ -60,6 +60,7 @@
 						<strong> Daftar Kota </strong>
 					</div>
 					<div class="panel-body">
+			<div class="table-responsive">		
 			<table class="table table-striped table-bordered table-hover">
 			<tr>
                 <th>No.</th>
@@ -86,7 +87,7 @@
                 @endforeach
 
 		</table>
-
+		</div>
 		<div class="form-group">
            <center> {!! str_replace('/?', '?', $ngelists->render()) !!}</center>
         </div>
@@ -94,6 +95,4 @@
 					<div class="panel-footer ">
 						
 					</div>
-                
-	</div>
 @stop

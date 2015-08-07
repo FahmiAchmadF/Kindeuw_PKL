@@ -6,7 +6,8 @@
         @foreach($results as $result)
             <div class="form-group">
             <h5>ID Buku :<a href="{{ url('Admin', $result->id) }}">{{ $result->id }}</a></h5>
-            <h5>Judul Buku :<h4><a href="{{ url('Admin', $result->id) }}">{{ $result->Judul }}</a> </h4></h5>
+            <h5>Judul Buku :<a href="{{ url('Admin', $result->id) }}">{{ $result->Judul }}</a> </h5>
+            <hr>
         @endforeach
                 <hr/>
             </div>

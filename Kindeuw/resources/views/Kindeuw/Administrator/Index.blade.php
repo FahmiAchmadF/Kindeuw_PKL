@@ -1,7 +1,6 @@
 @extends('Kindeuw.Administrator.Admin')
 @section('kontensatu')
 
-<div class="col-lg-10 col-xs-10 col-lg-offset-2 col-xs-offset-2">
     @if(Session::has('flash_message'))
         <div class="alert alert-success"><span class="glyphicon glyphicon-ok"></span> {{ Session::get('flash_message') }}</div>
     @endif
@@ -13,6 +12,12 @@
     @if(Session::has('hapus_data'))
         <div class="alert alert-success"><span class="glyphicon glyphicon-ok"></span> {{ Session::get('hapus_data') }}</div>
     @endif
+    <div class="panel panel-default">
+    <div class="panel-heading">
+                        <strong> Daftar Buku </strong>
+                    </div>
+                    <div class="panel-body">
+    <div class="table-responsive">
 		<table class="table table-striped table-bordered table-hover">
 			<tr>
                 <th>No.</th>
@@ -46,11 +51,16 @@
                 @endforeach
 
 		</table>
-        
-    <div class="container-fluid coeg2">
+        </div>
+    
         <div class="form-group">
            <center> {!! str_replace('/?', '?', $manekinds->render()) !!}</center>
         </div>
-    </div>
-      </div>
+    
+</div>
+<div class="panel-footer ">
+                        
+                    </div>
+</div>                    
+
 @stop

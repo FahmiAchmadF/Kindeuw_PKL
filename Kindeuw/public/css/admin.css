@@ -1,105 +1,13 @@
-@font-face{
-	font-family: 'Josefin-Slab';
-	src: {{ asset('bootstrap-3.3.5-dist/fonts/JosefinSlab-Bold.ttf') }};
-}
-
-.kanan{
-	float: right;
-	right: 0;
-}
-
-.pdf{
-    background-color: #e67e22 !important;
-    color: white !important;
-}
-
-kindeuw{
-	font-size: 35px;
-	font-family: Sans-Serif;
-	text-align: center !important;
-	color: white;
-}
-
-info{
-	font-size: 1em;
-	font-family: 'Josefin-Slab';
-	text-align: left;
-	color: white;
-}
-
-buku{
-	font-size: 3em;
-	font-family: 'Segoe UI';
-	text-align: right;
-	color: white;
-}
-.sidebar{
-	width: 100%;
-	height: 100%;
-	background-color: #95a5a6;
-	float: left;
-	top: 0;
-	left: 0;
+.suntikfixed{
 	position: fixed !important;
+	left: 0!important;
 }
 
-
-.gambar{
-	margin-top: 2px;
-	height: 200px;
-	width: 90% !important;
-	background-color: #95a5a6;
-}
-.paddingnol{
-	padding-left: 0 !important;
-	padding-right: 0 !important;
+.suntikwidth{
+	width: 85% !important;
 }
 
-.spasi{
-	color: white;
-	padding: 10px;
-}
-
-.dissmar{
-	margin-top: 0px !important;
-}
-.bordernol {
-	border-radius: 0 !important;
-}
-.bordernol2 {
-	border-radius: 0 !important;
-	color: #C2C2CA !important;
-	text-align: left !important;
-	font-size: 14px !important;
-}
-.bordernol2:hover{
-	color: white !important;
-	background-color: #7f8c8d !important;	
-}
-.inicari {
-	height: 34px !important;
-}
-
-.footer{
-	text-align: center;
-	position: fixed !important;
-	clear: both !important;
-	bottom: 0 !important;
-	height: 100px;
-	background-color: #2c3e50;
-}
-
-.footer:hover{
-	color: #e74c3c;
-}
-
-.out {
-	border-radius: 0 !important;
-	color: #C2C2CA !important;
-	text-align: left !important;
-	font-size: 14px !important;
-}
-.out:hover{
-	color: white !important;
-	background-color: #e74c3c !important;	
+#terbilang{
+	color: #1fa67a;
+	font-size: 17px;
 }

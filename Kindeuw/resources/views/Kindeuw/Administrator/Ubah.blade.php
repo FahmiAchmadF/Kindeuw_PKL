@@ -1,6 +1,10 @@
 @extends('Kindeuw.Administrator.Admin')
 @section('kontensatu')
-  <div class="col-lg-10 col-xs-10 col-lg-offset-2 col-xs-offset-2">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+                        <strong> {{ $edit->Judul }} </strong>
+                    </div>
+                    <div class="panel-body">
        {!! Form::open(['url' => ['Admin/ubah/lagi',$edit->id], 'method' => 'PUT', 'enctype' => 'multipart/form-data']) !!}
        <div class="form-group">
            <label for="id">ID</label>
@@ -28,13 +32,14 @@
                                         </div>
                                 <div class="form-group">
                                 {!! Form::label('Banyak_halaman', 'Banyak Halaman:') !!}
-                                {!! Form::text('Banyak_halaman', $edit->Banyak_halaman , ['class' => 'form-control']) !!}
+                                {!! Form::text('Banyak_halaman', $edit->Banyak_halaman , ['class' => 'form-control  ']) !!}
+                                
                                 </div>
-                          <div class="form-group">
+                          <div class="form-group suntikwidth">
                           {!! Form::label('Bahasa', 'Bahasa:') !!}
                           {!! Form::select('Bahasa[]', $opsibahasa, $inibahasa, ['id'=>'Bahasa_list', 'class' => 'form-control', 'multiple']) !!}
                           </div>
-                      <div class="form-group">
+                      <div class="form-group suntikwidth">
                       {!! Form::label('Genre', 'Genre:') !!}
                       {!! Form::select('Genre[]', $opsigenre, $inigenre, ['id'=>'Genre_list', 'class' => 'form-control', 'multiple']) !!}
                       </div>
@@ -59,6 +64,11 @@
        </div>
   
        {!! Form::close() !!}
+  </div>
+
+  <div class="panel-footer ">
+                        
+    </div>
   </div>
 @stop
 
