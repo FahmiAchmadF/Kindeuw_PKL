@@ -18,7 +18,7 @@
 
         <header class="main-header">
         
-        <a href="index2.html" class="logo">
+        <a href="{{ url('Admin/index') }}" class="logo suntiktopfixed">
           
           <span class="logo-mini"><b>K</b>IN</span>
           
@@ -38,32 +38,22 @@
               
               <li class="dropdown user user-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                  <img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image" />
+                  <img src="{{ asset('image/admin/favicon.ico') }}" class="user-image" alt="User Image" />
                   <span class="hidden-xs">{{ $username }}</span>
                 </a>
                 <ul class="dropdown-menu">
                  
                   <li class="user-header">
-                    <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image" />
+                    <img src="{{ asset('image/admin/favicon.ico') }}" class="img-circle" alt="User Image" />
                     <p>
                       {{ $username }} - Admin Kindeuw Bookstore
                       <small>Member since sebelum masehi</small>
                     </p>
                   </li>
                  
-                  <li class="user-body">
-                    <div class="col-xs-4 text-center">
-                      <a href="#">Followers</a>
-                    </div>
-                    <div class="col-xs-4 text-center">
-                      <a href="#">Sales</a>
-                    </div>
-                    <div class="col-xs-4 text-center">
-                      <a href="#">Friends</a>
-                    </div>
-                  </li>
+                  
                 
-                  <li class="user-footer">
+                  <li class="user-footer usfoot">
                     <div class="pull-right">
                       <a href="{{ url('Kindeuw/index/index/logout') }}" class="btn btn-default btn-flat">Sign out</a>
                     </div>
@@ -85,6 +75,7 @@
           
           
           {!! Form::open(['url' => 'Admin/search/search/search', 'method' => 'post', 'value' => 'csrf_token()', 'class' => 'sidebar-form']) !!}
+            
             <div class="input-group">
               {!! Form::text('cari1', null, ['class' => 'form-control', 'placeholder' => 'Cari Data Buku']) !!}
               <span class="input-group-btn">

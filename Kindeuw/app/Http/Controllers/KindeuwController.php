@@ -211,7 +211,7 @@ class KindeuwController extends Controller {
 
     public function posttransaksi(Requests\Transaksi $request){
         $idkota = $request->get('kota');
-        $opsikota = select('select opsi_kota from kota where id = ?', [$idkota])[0];
+        $opsikota = DB::select('select opsi_kota from kota where id = ?', [$idkota])[0];
         $opsi_kota = $opsikota->opsi_kota;
 
         $id=$request->get('id_buku');

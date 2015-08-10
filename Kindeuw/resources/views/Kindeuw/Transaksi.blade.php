@@ -4,6 +4,12 @@
 @if(Session::has('OverBuy'))
     <div class="alert alert-danger"><span class="glyphicon glyphicon-remove-sign"></span> {{ Session::get('OverBuy') }}</div>
 @endif
+
+<div class="panel panel-default">
+					<div class="panel-heading">
+						<strong> Transaksi </strong>
+					</div>
+					<div class="panel-body">
 	{!! Form::open(['url'=>'transaksi/proses', 'method'=>'POST']) !!}
 <div class="form-group">
 {!! Form::hidden('id_buku', $show->id) !!}
@@ -59,8 +65,9 @@
 			</div>
 						
 	{!! Form::close() !!}
-
-	@if ($errors->any())
+	</div>
+<div class="panel-footer ">
+@if ($errors->any())
 		<div class="alert alert-danger">
 		<center><h1>Tolong Perikasa Inputan Anda !</h1></center>
 			@foreach ($errors->all() as $error)
@@ -68,6 +75,9 @@
 			@endforeach
 		</div>
 	@endif
+</div>
+</div>
+	
 
 </div>
 

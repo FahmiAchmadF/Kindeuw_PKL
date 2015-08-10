@@ -1,6 +1,6 @@
 @extends('Kindeuw.App')
 @section('kontensatu')
-<div class="col-lg-12 col-xs-12">
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 	<?php $uang=$show['Harga'];
 			$format = number_format($uang, 0, '.', '.');
 		?>
@@ -32,11 +32,13 @@
 								</div>
 			
 		</div>
-		<div class="col-sm-8">
+		<div class="row">
+		<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
 			<a href="{{ url('Kindeuw/pdf/pdf',$show->id) }}" class="btn btn-default btn-block pdf"  target="_blank"><span class="glyphicon glyphicon-file"></span> PDF</a>
 		</div>
-    <div class="col-sm-4">
+    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
         <a href="{{ url('Kindeuw') }}" class="btn btn-primary btn-block"><span class="glyphicon glyphicon-menu-left"></span> Kembali</a>
+    </div>
     </div>
 </div>
 @stop

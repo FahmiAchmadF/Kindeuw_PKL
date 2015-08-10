@@ -10,6 +10,7 @@ class Transaksi extends Model {
 	'email',
 	'nama',
 	'alamat',
+	'kota',
 	'no_telp',
 	'id_buku',
 	'Judul',

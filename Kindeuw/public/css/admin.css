@@ -3,11 +3,25 @@
 	left: 0!important;
 }
 
+.suntiktopfixed{
+	position: fixed !important;
+	top: 0 !important;
+}
+
 .suntikwidth{
-	width: 85% !important;
+	width: 70% !important;
 }
 
 #terbilang{
 	color: #1fa67a;
 	font-size: 17px;
+}
+
+
+.usfoot{
+	background-color: #34495e !important;
+}
+
+.bgcolorheader{
+	background-color: #1abc9c !important;
 }

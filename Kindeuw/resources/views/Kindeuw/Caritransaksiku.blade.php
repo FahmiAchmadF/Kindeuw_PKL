@@ -1,18 +1,18 @@
 @extends('Kindeuw.App')
 @section('kontensatu')
 <div class="col-lg-12 col-xs-12">
-	
+	       <div class="form-group">
             {!! Form::open(['url' => 'transaksiku', 'method' => 'post']) !!}
+            <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
+            <div class="input-group">
                 {!! Form::text('idtransaksi', null, ['class' => 'form-control', 'placeholder' => 'Masukan ID Transaksi']) !!}
-            	<div class="row">
-            		<div class="col-lg-8">
-            			<a href="Kindeuw" class="btn btn-primary">Kembali</a>
-            		</div>
-            		<div class="col-lg-4 col-xs-4">
-					<button class="btn btn-default" type="submit">Cari TransaksiKU  <span class="glyphicon glyphicon-search"></span></button>
-            		</div>
-            	</div>
+                <div class="input-group-btn">
+					<button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search"></span></button>
+            </div>
+            </div>		
                 {!! Form::close() !!}
+                </div>
+                <a href="Kindeuw" class="btn btn-primary">Kembali</a>
 </div>
 
 @stop

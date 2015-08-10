@@ -21,7 +21,19 @@
     @if(Session::has('Konfirmasi Terima Barang'))
         <div class="alert alert-success"><span class="glyphicon glyphicon-ok"></span> {{ Session::get('Konfirmasi Terima Barang') }}</div>
     @endif
-		<table class="table table-striped table-bordered table-hover">
+
+                {!! Form::open(['url' => 'Kindeuw/search/search/search', 'method' => 'post']) !!}
+                <div class="form-group">
+                <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
+                <div class="input-group">
+                {!! Form::text('cari1', null, ['class' => 'form-control', 'placeholder' => 'Cari Data Buku']) !!}
+                <div class="input-group-btn">
+                <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search"></span></button>
+                </div>
+                </div>
+                {!! Form::close() !!}
+                </div>
+		<!-- <table class="table table-striped table-bordered table-hover">
 			<tr>
                 <th>No.</th>
 				<th>Judul</th>
@@ -48,8 +60,42 @@
                 <?php $i++; ?>
                 @endforeach
 
-		</table>
+		</table> -->
         
+
+<?php $uang=$manekin['Harga'];
+                    $format = number_format($uang, 0, '.', '.');
+                    ?>
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        @foreach($manekinds as $manekin)
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+        
+                    
+            <div class="maincontainer">
+            <div class="panel panel-default">
+            <div class="panel-body">
+        <center> <img src="{{ url('image') }}/{{ $manekin->id }}.png"> </center>
+        <div class="form-group"><center><p>{{ $manekin->Judul }}</p></center>
+        <h4>Rp.{{ $format }}</h4></div>
+        <a href="{{ url('Kindeuw',$manekin->id) }}" class="btn btn-default detail">Detail</a>
+        <a href="{{ url('transaksi',$manekin->id) }}" class="btn btn-default beli rigth">Beli</a>
+        </div>
+        </div>
+        </div>
+        </div>
+        @endforeach
+        <!-- <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"><center> iklan 2 </center></div>
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"><center> iklan 3 </center></div>
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"><center> iklan 4 </center></div>
+        </div> -->
+        <!-- <div class="row">
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"><center> iklan 5 </center></div>
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"><center> iklan 6 </center></div>
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"><center> iklan 7 </center></div>
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"><center> iklan 8 </center></div>
+        </div> -->
+        </div>
+
     <div class="container-fluid coeg2">
         <div class="form-group">
            <center> {!! str_replace('/?', '?', $manekinds->render()) !!}</center>

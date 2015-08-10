@@ -17,7 +17,7 @@
 				$stokhabis = $stok;
 			}
 		?>
-		<div class="col-lg-5 col-xs-5">
+		<div class="row">
 			<center>
 				<img src="{{ asset('image')}}/{{ $show['id'] }}.png" class="img-rounded"/>
 			</center>
