@@ -33,68 +33,35 @@
                 </div>
                 {!! Form::close() !!}
                 </div>
-		<!-- <table class="table table-striped table-bordered table-hover">
-			<tr>
-                <th>No.</th>
-				<th>Judul</th>
-				<th>Penerbit</th>
-				<th>Harga</th>
-				<th colspan="2">Aksi</th>
-			</tr>
-            <?php $i=1; ?>
-            @foreach($manekinds as $manekin)
-                    <?php $uang=$manekin['Harga'];
-                    $format = number_format($uang, 0, '.', '.');
-                    ?>
-                    <tr>
-                        <td>
-                           <?php echo $i; ?>
 
-                        </td>
-                        <td>{{ $manekin->Judul }}</td>
-                        <td>{{ $manekin->Penerbit }}</td>
-                        <td>Rp.{{ $format }}</td>
-                        <td><center><a href="{{ url('Kindeuw',$manekin->id) }}" class="btn btn-info"><span class="glyphicon glyphicon-book"></span> BACA</a></center></td>
-                        <td><center><a href="{{ url('transaksi',$manekin->id) }}" class="btn btn-success">Beli</center></td>
-                    </tr>
-                <?php $i++; ?>
-                @endforeach
 
-		</table> -->
-        
-
-<?php $uang=$manekin['Harga'];
-                    $format = number_format($uang, 0, '.', '.');
-                    ?>
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div></div>
+        <div class="row">
         @foreach($manekinds as $manekin)
-        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-        
+        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+        <?php $uang=$manekin['Harga'];
+                    $format = number_format($uang, 0, '.', '.');
+                    ?>
                     
             <div class="maincontainer">
             <div class="panel panel-default">
             <div class="panel-body">
+            
         <center> <img src="{{ url('image') }}/{{ $manekin->id }}.png"> </center>
-        <div class="form-group"><center><p>{{ $manekin->Judul }}</p></center>
-        <h4>Rp.{{ $format }}</h4></div>
-        <a href="{{ url('Kindeuw',$manekin->id) }}" class="btn btn-default detail">Detail</a>
-        <a href="{{ url('transaksi',$manekin->id) }}" class="btn btn-default beli rigth">Beli</a>
+
+        <div class="form-group"><center><h5>{{ $manekin->Judul }}</h5></center>
+        <center><h4>Rp.{{ $format }}</h4></center></div>
+        <a href="{{ url('Kindeuw',$manekin->id) }}" class="btn btn-default detail nonborderradius">Detail</a>
+        <a href="{{ url('transaksi',$manekin->id) }}" class="btn btn-default beli rigth nonborderradius">Beli</a>
+        
         </div>
         </div>
         </div>
         </div>
         @endforeach
-        <!-- <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"><center> iklan 2 </center></div>
-        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"><center> iklan 3 </center></div>
-        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"><center> iklan 4 </center></div>
-        </div> -->
-        <!-- <div class="row">
-        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"><center> iklan 5 </center></div>
-        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"><center> iklan 6 </center></div>
-        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"><center> iklan 7 </center></div>
-        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"><center> iklan 8 </center></div>
-        </div> -->
         </div>
+        
+        
 
     <div class="container-fluid coeg2">
         <div class="form-group">

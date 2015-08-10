@@ -1,109 +1,168 @@
 @extends('Kindeuw.App')
 @section('kontensatu')
+<?php $uang=$resultsclear->Harga;
+$format = number_format($uang, 0, '.', '.');
+$total=$resultsclear->Total;
+$format1 = number_format($total, 0, '.', '.');
+?>
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<strong>Informasi Pembelian</strong>
+	</div>
+	<div class="panel-body">
+		<table>
+	
 
-<div class="col-lg-12 col-xs-12">
-	<div class="col-lg-12 col-xs-12">
-	<div class="row">
-	<div class="col-lg-3 col-xs-3">ID Transaksi :</div>
-	<div class="col-lg-8 col-xs-8"> {{ $resultsclear->id }}</div>
-	</div>
-	</div>
+	<tr>
+	<th>
+		ID Transaksi
+	</th>
+	 <th>:</th>
+	 <td>
+	{{ $resultsclear->id }}
+	</td>
+	</tr>
 	
-	<div class="col-lg-12 col-xs-12">
-	<div class="row">
-	<div class="col-lg-3 col-xs-3">Email Pemesan :</div>
-	<div class="col-lg-8 col-xs-8"> {{ $resultsclear->email }}</div>
-	</div>
-	</div>
+	<tr>
+	<th>
+		Email Pembeli 
+	</th>
+	<th>:</th>
+	<td>
+	{{ $resultsclear->email }}
+	</td>
+	</tr>
 
-	<div class="col-lg-12 col-xs-12">
-	<div class="row">
-	<div class="col-lg-3 col-xs-3">Nama Pemesan :</div>
-	<div class="col-lg-8 col-xs-8"> {{ $resultsclear->nama }}</div>
-	</div>
-	</div>
+	<tr>
+	<th>
+		Nama Pembeli 
+	</th>
+	<th>:</th>
+	<td>
+	{{ $resultsclear->nama }}
+	</td>
+	</tr>
 	
-	<div class="col-lg-12 col-xs-12">
-	<div class="row">
-	<div class="col-lg-3 col-xs-3">Alamat Pemesan :</div>
-	<div class="col-lg-8 col-xs-8"> {{ $resultsclear->alamat }}</div>
-	</div>
-	</div>
+	<tr>
+	<th>
+		Alamat 
+	</th>
+	<th>:</th>
+	<td>
+	{{ $resultsclear->alamat }}
+	</td>
+	</tr>
 	
-	<div class="col-lg-12 col-xs-12">
-	<div class="row">
-	<div class="col-lg-3 col-xs-3">No Telepon :</div>
-	<div class="col-lg-8 col-xs-8"> {{ $resultsclear->no_telp }}</div>
-	</div>
-	</div>
+	<tr>
+	<th>
+		No Telepon 
+	</th>
+	<th>:</th>
+	<td>
+	{{ $resultsclear->no_telp }}
+	</td>
+	</tr>
 	
-	<div class="col-lg-12 col-xs-12">
-	<div class="row">
-	<div class="col-lg-3 col-xs-3">Status Pembayaran :</div>
-	<div class="col-lg-8 col-xs-8"> {{ $status_transfer }}</div>
-	</div>
-	</div>
+	<tr>
+	<th>
+		Status Pembayaran 
+	</th>
+	<th>:</th>
+	<td>
+	{{ $status_transfer }}
+	</td>
+	</tr>
 	
-	<div class="col-lg-12 col-xs-12">
-	<div class="row">
-	<div class="col-lg-3 col-xs-3">Status Penerimaan Pembayaran :</div>
-	<div class="col-lg-8 col-xs-8"> {{ $status_admin_terima }}</div>
-	</div>
-	</div>
+	<tr>
+	<th>
+		Status Penerimaan Pembayaran    
+	</th>
+	<th>:</th>
+	<td>
+	{{ $status_admin_terima }}
+	</td>
+	</tr>
 
-	<div class="col-lg-12 col-xs-12">
-	<div class="row">
-	<div class="col-lg-3 col-xs-3">Status Penerimaan Barang :</div>
-	<div class="col-lg-8 col-xs-8"> {{ $status_terima_barang }}</div>
-	</div>
-	</div>
+	<tr>
+	<th>
+		Status Penerimaan Barang 
+	</th>
+	<th>:</th>
+	<td>
+	{{ $status_terima_barang }}
+	</td>
+	</tr>
 
-	<div class="col-lg-12 col-xs-12">
-	<div class="row">
-	<div class="col-lg-3 col-xs-3">Judul Buku :</div>
-	<div class="col-lg-8 col-xs-8"> {{ $resultsclear->Judul }}</div>
-	</div>
-	</div>
+	<tr>
+	<th>
+		Judul Buku 
+	</th>
+	<th>:</th>
+	<td>
+	{{ $resultsclear->Judul }}
+	</td>
+	</tr>
 	
-	<div class="col-lg-12 col-xs-12">
-	<div class="row">
-	<div class="col-lg-3 col-xs-3">Harga Buku :</div>
-	<div class="col-lg-8 col-xs-8"> Rp. {{ $resultsclear->Harga }}</div>
-	</div>
-	</div>
+	<tr>
+	<th>
+		Harga Buku 
+	</th>
+	<th>:</th>
+	<td>
+	Rp. {{ $format }}
+	</td>
+	</tr>
 	
-	<div class="col-lg-12 col-xs-12">
-	<div class="row">
-	<div class="col-lg-3 col-xs-3">Jumlah Pembelian Buku :</div>
-	<div class="col-lg-8 col-xs-8"> {{ $resultsclear->jumlah_beli }}</div>
-	</div>
-	</div>
+	<tr>
+	<th>
+		Jumlah Pembelian 
+	</th>
+	<th>:</th>
+	<td>
+	{{ $resultsclear->jumlah_beli }}
+	</td>
+	</tr>
 
-	<div class="col-lg-12 col-xs-12">
-	<div class="row">
-	<div class="col-lg-3 col-xs-3">Total :</div>
-	<div class="col-lg-8 col-xs-8"> Rp. {{ $resultsclear->Total }}</div>
-	</div>
-	</div>
+	<tr>
+	<th>
+		Total 
+	</th>
+	<th>:</th>
+	<td>
+	Rp. {{ $format1 }}
+	</td>
+	</tr>
 
-	<div class="col-lg-12 col-xs-12">
-	<div class="row">
-	<div class="col-lg-3 col-xs-3">Partner Kurir :</div>
-	<div class="col-lg-8 col-xs-8"> {{ $kurir }}</div>
-	</div>
-	</div>
+	<tr>
+	<th>
+		Kurir 
+	</th>
+	<th>:</th>
+	<td>
+	{{ $kurir }}
+	</td>
+	</tr>
 
-	
-	<div class="row">
-	<div class="col-lg-3 col-xs-3">
+</table>
+
+
+
+
+
+</div>
+
+<div class="panel-footer">
+	<p style="color:red;"> Tanggal Pembelian:{{ $resultsclear->created_at }}</p>
+</div>
+
+</div>
+
+<div class="panel panel-default">
+	<div class="panel-heading">Aksi Pembeli</div>
+	<div class="panel-body">
 		<a href="{{ url('konfirmasi/pembayaran',$resultsclear->id) }}" class="btn btn-success">Bayar</a>
-	</div>
-	<div class="col-lg-3 col-xs-3">
 		<a href="{{ url('konfirmasi/penerimaanbarang',$resultsclear->id) }}" class="btn btn-info">Konfirmasi Barang Diterima</a>
 	</div>
-	</div>
-
-
 </div>
 
 <script type="text/javascript" src=""></script>

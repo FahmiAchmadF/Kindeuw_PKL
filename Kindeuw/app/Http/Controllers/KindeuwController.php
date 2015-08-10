@@ -57,7 +57,7 @@ class KindeuwController extends Controller {
 	public function index(){
 
 
-        $manekinds = Kindeuw::paginate(10);
+        $manekinds = Kindeuw::paginate(12);
 
 		return view('Kindeuw.Index', compact('manekinds'));
 
@@ -182,8 +182,9 @@ class KindeuwController extends Controller {
                 }
             }
 
-    public function pdf($id){
-        $read = Kindeuw::find($id);
+    public function pdfshow($id){
+        $read = Transaksi::find($id);
+        
         $pdf = PDF::loadView('Kindeuw.PDF', $read);
         return $pdf->stream();
     }
@@ -403,13 +404,19 @@ class KindeuwController extends Controller {
     }
 
     public function delete($id){
-        $coba = Transaksi::find($id)->delete();
-        // dd($coba);
+        $tran = Transaksi::find($id);
+        $stokdibeli = $tran->jumlah_beli;
+        $stok = DB::select('select stok from books where id = ?', [$tran->id_buku])[0];
+        $selectstok = $stok->stok;
+        $hasilstok = $selectstok + $stokdibeli;
+        DB::table('books')->where('id',[$tran->id_buku])->update(['stok' => $hasilstok]);
+        Transaksi::find($id)->delete();
+
         $listtransaksi = Transaksi::paginate(10);
         $cobalist = DB::table('transaksi')->get();
         $username = Auth::user()->username;
         \Session::flash('hapus_data','Berhasil Menghapus Data');
-        return view('Kindeuw.Administrator.ListTransaksi', compact('username', 'listtransaksi', 'cobalist'));
+        return redirect('Admin/list/transaksi')->with('username', 'listtransaksi', 'cobalist');
     }
 
     public function tambahgenre(){

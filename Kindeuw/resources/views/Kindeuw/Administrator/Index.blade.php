@@ -12,6 +12,7 @@
     @if(Session::has('hapus_data'))
         <div class="alert alert-success"><span class="glyphicon glyphicon-ok"></span> {{ Session::get('hapus_data') }}</div>
     @endif
+    <div class="col-lg-12 col-md-12 col-sm-12 col-sx-12">
     <div class="panel panel-default">
     <div class="panel-heading">
                         <strong> Daftar Buku </strong>
@@ -62,5 +63,5 @@
                         
                     </div>
 </div>                    
-
+</div>
 @stop

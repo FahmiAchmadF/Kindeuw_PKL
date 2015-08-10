@@ -25,3 +25,7 @@
 .bgcolorheader{
 	background-color: #1abc9c !important;
 }
+
+.floatleft{
+	float: left !important;
+}

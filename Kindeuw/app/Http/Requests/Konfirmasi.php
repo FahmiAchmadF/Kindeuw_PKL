@@ -23,11 +23,11 @@ class Konfirmasi extends Request {
 	{
 		return [
 			'id_transaksi' => 'required',
-			'nama_pemilik_rekening' => 'required',
-			'nama_bank' => 'required',
-			'nomor_rekening' => 'required',
-			'transfer_ke_no' => 'required',
-			'email' => 'required'
+			'nama_pemilik_rekening' => 'required|min:3|max:50',
+			'nama_bank' => 'required|min:2|max:35',
+			'nomor_rekening' => 'required|min:5|max:30',
+			'transfer_ke_no' => 'required|min:5|max:30',
+			'email' => 'required|min:5|max:35'
 		];
 	}
 

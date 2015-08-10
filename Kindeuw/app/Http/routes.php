@@ -33,7 +33,7 @@ Route::get('Kindeuw/{id}', 'KindeuwController@baca');
 Route::get('Kindeuw/About/About', 'KindeuwController@about');
 Route::get('Kindeuw/Contact/Contact', 'KindeuwController@kontak');
 Route::post('Kindeuw/search/search/search', 'KindeuwController@cari');
-Route::get('Kindeuw/pdf/pdf/{id}', 'KindeuwController@pdf');
+Route::get('Transaksi/pdf/pdf/{id}', 'KindeuwController@pdfshow');
 Route::get('Kindeuw/excel/excel', 'KindeuwController@excel');
 Route::get('Kindeuw/daftar/akun', 'KindeuwController@daftar');
 Route::post('Kindeuw/daftar/akun/cek', 'KindeuwController@regis');

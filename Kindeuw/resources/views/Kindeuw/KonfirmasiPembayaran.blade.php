@@ -1,12 +1,13 @@
 @extends('Kindeuw.App')
 @section('kontensatu')
-<div class="col-lg-12 col-xs-12">
-
-    @if(Session::has('Konfirmasigagal'))
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+@if(Session::has('Konfirmasigagal'))
         <div class="alert alert-danger"><span class="glyphicon glyphicon-sign"></span> {{ Session::get('Konfirmasigagal') }}</div>
     @endif
-
-	{!! Form::open(['url'=>['konfirmasi/proses'], 'method'=>'POST']) !!}
+	<div class="panel panel-default">
+		<div class="panel-heading">Konfirmasi Pembayaran</div>
+		<div class="panel-body">
+		{!! Form::open(['url'=>['konfirmasi/proses'], 'method'=>'POST']) !!}
 		{!! Form::hidden('id_transaksi', $id) !!}
 		<div class="form-group">
 		{!! Form::label('nama_pemilik_rekening', 'Nama Pemilik Rekening :') !!}
@@ -32,8 +33,19 @@
 		<div class="form-group">
 			{!! Form::submit('Konfirmasi', ['class'=>'btn btn-success']) !!}
 		</div>
-	{!! Form::close() !!}
-
+		{!! Form::close() !!}
+		</div>
+		<div class="panel-footer">
+			@if ($errors->any())
+		<div class="alert alert-danger">
+		<center><h1>Tolong Perikasa Inputan Anda !</h1></center>
+			@foreach ($errors->all() as $error)
+				<p><span class="glyphicon glyphicon-remove-sign"></span> {{ $error }}</p>
+			@endforeach
+		</div>
+	@endif
+		</div>
+	</div>
 </div>
 
 @stop
