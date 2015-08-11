@@ -73,7 +73,18 @@
            <center> {!! str_replace('/?', '?', $listtransaksi->render()) !!}</center>
         </div>
         <div class="panel-footer ">
+
+                        <strong>
                         
+                            Jumlah Buku : <span style="color:red">{{ $count }}</span>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            Sudah Membayar : <span style="color:blue">{{$countbayar}}</span>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            Sudah Terima Pembayaran : <span style="color:blue">{{$countterimapembayaran}}</span>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            Sudah Terima Barang : <span style="color:blue">{{$countterimabarang}}</span>
+                           
+                        </strong>
                     </div>
         
         </div>

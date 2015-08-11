@@ -94,7 +94,7 @@
         </div>
 					</div>
 					<div class="panel-footer ">
-						
+						<strong>Jumlah Genre : <span style="color:green">{{ $count }}</span></strong>
 					</div>
                 
 

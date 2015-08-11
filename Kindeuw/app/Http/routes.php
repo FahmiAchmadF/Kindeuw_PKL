@@ -25,7 +25,7 @@ Route::post('Admin/search/search/search', 'CustomLoginController@cari');
 Route::get('index', 'CustomLoginController@getlogin');
 Route::get('Kindeuw/index/index/logout', 'CustomLoginController@logout');
 Route::post('Kindeuw/index/index', 'CustomLoginController@postlogin');
-
+Route::get('Admin/dashboard/index', 'CustomLoginController@dashboard');
 
 
 Route::get('Kindeuw', 'KindeuwController@index');
@@ -37,6 +37,9 @@ Route::get('Transaksi/pdf/pdf/{id}', 'KindeuwController@pdfshow');
 Route::get('Kindeuw/excel/excel', 'KindeuwController@excel');
 Route::get('Kindeuw/daftar/akun', 'KindeuwController@daftar');
 Route::post('Kindeuw/daftar/akun/cek', 'KindeuwController@regis');
+Route::get('Admin/list/transaksi/belumbayar', 'CustomLoginController@listbelumbayar');
+Route::get('Admin/list/transaksi/belumterimatransfer', 'CustomLoginController@listbelumterimatransfer');
+Route::get('Admin/list/transaksi/belumterimabarang', 'CustomLoginController@listbelumterimabarang');
 
 Route::get('transaksi/{id}', 'KindeuwController@transaksi');
 Route::post('transaksi/proses', 'KindeuwController@posttransaksi');

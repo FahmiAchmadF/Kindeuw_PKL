@@ -10,7 +10,10 @@ $format1 = number_format($total, 0, '.', '.');
 		<strong>Informasi Pembelian</strong>
 	</div>
 	<div class="panel-body">
-		<table>
+	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-10.col-xs-offset-1">
+	
+		<div class="table-responsive">
+		<table class="table table-default">
 	
 
 	<tr>
@@ -144,6 +147,10 @@ $format1 = number_format($total, 0, '.', '.');
 	</tr>
 
 </table>
+</div>
+
+</div>
+
 
 
 
@@ -158,10 +165,14 @@ $format1 = number_format($total, 0, '.', '.');
 </div>
 
 <div class="panel panel-default">
-	<div class="panel-heading">Aksi Pembeli</div>
+	<div class="panel-heading"><strong> Aksi Pembeli </strong></div>
 	<div class="panel-body">
-		<a href="{{ url('konfirmasi/pembayaran',$resultsclear->id) }}" class="btn btn-success">Bayar</a>
-		<a href="{{ url('konfirmasi/penerimaanbarang',$resultsclear->id) }}" class="btn btn-info">Konfirmasi Barang Diterima</a>
+	<div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
+		<a href="{{ url('konfirmasi/pembayaran',$resultsclear->id) }}" class="btn btn-success nonborderradius btn-block">Bayar</a>
+	</div>
+	<div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
+		<a href="{{ url('konfirmasi/penerimaanbarang',$resultsclear->id) }}" class="btn btn-info nonborderradius btn-block">Konfirmasi Barang Diterima</a>
+	</div>
 	</div>
 </div>
 

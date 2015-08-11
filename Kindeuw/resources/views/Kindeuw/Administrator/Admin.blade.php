@@ -19,7 +19,7 @@
 
         <header class="main-header">
         
-        <a href="{{ url('Admin/index') }}" class="logo suntiktopfixed">
+        <a href="{{ url('Admin/dashboard/index') }}" class="logo suntiktopfixed">
           
           <span class="logo-mini"><b>K</b>IN</span>
           
@@ -87,13 +87,9 @@
           <ul class="sidebar-menu">
             <li class="header">MENU</li>
             <li class="treeview">
-              <a href="#">
-                <i class="fa fa-dashboard"></i> <span>Dashboard</span> <i class="fa fa-angle-left pull-right"></i>
+              <a href="{{ url('Admin/dashboard/index') }}">
+                <i class="fa fa-dashboard"></i> <span>Dashboard</span>
               </a>
-              <ul class="treeview-menu">
-                <li class="active"><a href="index.html"><i class="fa fa-circle-o"></i> Dashboard v1</a></li>
-                <li><a href="index2.html"><i class="fa fa-circle-o"></i> Dashboard v2</a></li>
-              </ul>
             </li>
             <li>
               <a href="{{ url('Admin/create') }}">
@@ -107,9 +103,17 @@
               </a>
             </li>
             <li>
-              <a href="{{ url('Admin/list/transaksi') }}">
+              <a href="#">
                 <i class="fa fa-list-ol"></i> <span>Lihat Transaksi</span>
+                <i class="fa fa-angle-left pull-right"></i>
               </a>
+              <ul class="treeview-menu">
+                <li><a href="{{ url('Admin/list/transaksi/belumbayar') }}"> Belum Membayar</a></li>
+                <li><a href="{{ url('Admin/list/transaksi/belumterimatransfer') }}"> Belum Terima Transfer</a></li>
+                <li><a href="{{ url('Admin/list/transaksi/belumterimabarang') }}"> Belum Terima Barang</a></li>
+                <li><a href="{{ url('Admin/list/transaksi') }}"> Lihat Semua</a></li>
+                
+              </ul>
             </li>
             <li class="treeview">
               <a href="#">
@@ -147,7 +151,6 @@
 <script type="text/javascript" src="{{ asset('js/jquery-1.11.3.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/select2.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
-<!-- <script type="text/javascript" src="{{ asset('js/jquery-2.1.4.min.js') }}"></script> -->
 <script type="text/javascript" src="{{ asset('js/app.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/demo.js') }}"></script>
 	@yield('footer')	

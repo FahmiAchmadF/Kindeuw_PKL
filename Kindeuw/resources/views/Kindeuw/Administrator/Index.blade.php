@@ -60,7 +60,7 @@
     
 </div>
 <div class="panel-footer ">
-                        
+                        <strong>Jumlah Buku : <span style="color:red">{{ $count }}</span></strong>
                     </div>
 </div>                    
 </div>

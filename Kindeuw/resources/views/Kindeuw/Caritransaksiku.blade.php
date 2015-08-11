@@ -1,6 +1,6 @@
 @extends('Kindeuw.App')
 @section('kontensatu')
-<div class="col-lg-12 col-xs-12">
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 	       <div class="form-group">
             {!! Form::open(['url' => 'transaksiku', 'method' => 'post']) !!}
             <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
@@ -12,7 +12,6 @@
             </div>		
                 {!! Form::close() !!}
                 </div>
-                <a href="Kindeuw" class="btn btn-primary">Kembali</a>
 </div>
 
 @stop

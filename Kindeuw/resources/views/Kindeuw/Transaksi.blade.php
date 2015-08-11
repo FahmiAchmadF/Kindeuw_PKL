@@ -55,11 +55,11 @@
 
 			<div class="form-group">
 			<div class="row">
-			<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-				{!! Form::submit('Proses Transaksi Saya', ['class' => 'btn btn-success nonborderradius']) !!}
+			<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+				{!! Form::submit('Proses Transaksi Saya', ['class' => 'btn btn-success btn-block nonborderradius']) !!}
 			</div>
-			<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 rigth">
-				<a href="{{ url('Kindeuw') }}" class="btn btn-danger nonborderradius rigth">Kembali</a>
+			<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 rigth">
+				<a href="{{ url('Kindeuw') }}" class="btn btn-danger btn-block nonborderradius rigth">Kembali</a>
 			</div>
 			</div>
 			</div>

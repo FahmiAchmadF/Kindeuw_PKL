@@ -352,10 +352,13 @@ class KindeuwController extends Controller {
 
     public function listtransaksi(){
         $username = Auth::user()->username;
+        $count = DB::table('transaksi')->count();
+        $countbayar = DB::table('transaksi')->where('status_transfer', [1])->count();
+        $countterimapembayaran = DB::table('transaksi')->where('status_admin_terima', [1])->count();
+        $countterimabarang = DB::table('transaksi')->where('status_terima_barang', [1])->count();
         $listtransaksi = Transaksi::paginate(10);
         $cobalist = DB::table('transaksi')->get();
-        //dd($cobalist);
-        return view('Kindeuw.Administrator.ListTransaksi', compact('listtransaksi', 'username', 'cobalist'));
+        return view('Kindeuw.Administrator.ListTransaksi', compact('listtransaksi', 'username', 'cobalist', 'count','countbayar','countterimapembayaran', 'countterimabarang'));
     }
 
     public function terimatransaksi($id){
@@ -421,8 +424,9 @@ class KindeuwController extends Controller {
 
     public function tambahgenre(){
         $username = Auth::user()->username;
+        $count = DB::table('genre')->count();
         $ngelists = Genre::paginate(10);
-        return view('Kindeuw.Administrator.TambahGenre', compact('username', 'ngelists'));
+        return view('Kindeuw.Administrator.TambahGenre', compact('username', 'ngelists', 'count'));
     }
 
     public function tambahgenrepost(Requests\Genre $request){
@@ -434,8 +438,9 @@ class KindeuwController extends Controller {
 
     public function tambahbahasa(){
         $username = Auth::user()->username;
+        $count = DB::table('bahasa')->count();
         $ngelists = Bahasa::paginate(10);
-        return view('Kindeuw.Administrator.TambahBahasa', compact('username', 'ngelists'));
+        return view('Kindeuw.Administrator.TambahBahasa', compact('username', 'ngelists', 'count'));
     }
 
     public function tambahbahasapost(Requests\Bahasa $request){
@@ -447,8 +452,9 @@ class KindeuwController extends Controller {
 
     public function tambahkurir(){
         $username = Auth::user()->username;
+        $count = DB::table('kurir')->count();
         $ngelists = Kurir::paginate(10);
-        return view('Kindeuw.Administrator.TambahKurir', compact('username', 'ngelists'));
+        return view('Kindeuw.Administrator.TambahKurir', compact('username', 'ngelists', 'count'));
     }
 
     public function tambahkurirpost(Requests\Kurir $request){
@@ -538,8 +544,9 @@ class KindeuwController extends Controller {
 
     public function tambahkota(){
         $username = Auth::user()->username;
+        $count = DB::table('kota')->count();
         $ngelists = Kota::paginate(10);
-        return view('Kindeuw.Administrator.TambahKota', compact('username', 'ngelists'));
+        return view('Kindeuw.Administrator.TambahKota', compact('username', 'ngelists', 'count'));
     }
 
     public function tambahkotapost(Requests\Kota $request){

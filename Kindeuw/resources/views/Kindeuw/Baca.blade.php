@@ -22,10 +22,16 @@
 			
 			
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-			
+			<div class="row">
+			<div class="gambar">
 			<center>
-				<img src="{{ asset('image')}}/{{ $show['id'] }}.png" class="img-rounded"/>
-			</center><br>
+			
+				<img src="{{ asset('image')}}/{{ $show['id'] }}.png" class="img-rounded col-xs-12 col-sm-12 col-md-8 col-lg-8 col-lg-offset-2 col-md-offset-2"/>
+			
+			</center>
+			</div>
+			</div>
+			<br>
 			
 				<p><b>Judul :</b>  {{ $show['Judul'] }}</p>
 					<p><b>Penulis :</b>  {{ $show['Penulis'] }}</p>
@@ -49,10 +55,10 @@
 			
 		</div>
 		<div class="row">
-    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
         <a href="{{ url('Kindeuw') }}" class="btn btn-primary btn-block nonborderradius"><span class="glyphicon glyphicon-menu-left"></span> Kembali</a>
 	</div>
-	<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 rigth">
+	<div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 rigth">
         <a href="{{ url('transaksi',$show->id) }}" class="btn btn-default btn-block nonborderradius beli">Beli</a>
     </div>
     </div>

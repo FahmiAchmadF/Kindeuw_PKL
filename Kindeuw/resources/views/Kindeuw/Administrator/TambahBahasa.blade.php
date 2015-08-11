@@ -93,7 +93,7 @@
         </div>
 					</div>
 					<div class="panel-footer ">
-						
+						<strong>Jumlah Bahasa : <span style="color:red">{{ $count }}</span></strong>
 					</div>
                 
 	</div>
