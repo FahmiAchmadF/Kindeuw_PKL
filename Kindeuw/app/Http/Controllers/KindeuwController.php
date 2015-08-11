@@ -265,6 +265,7 @@ class KindeuwController extends Controller {
 
     public function hasilcaritransaksi(){
         $id = Request::input('idtransaksi');
+
         
          if ($id == '') {
              return view('Kindeuw.Caritransaksiku');            
@@ -273,21 +274,24 @@ class KindeuwController extends Controller {
          }else {
              $products = DB::table('transaksi');
              $results = $products->where('id', [$id])->get();
-             $resultsclear = $results[0];
-                $idkurir = $resultsclear->kurir;
-                $kurir = DB::select('select opsi_kurir from kurir where id = ?', [$resultsclear->kurir])[0]->opsi_kurir;
-        }
-
-        $stattrans=$resultsclear->status_transfer;
-        $staadter=$resultsclear->status_admin_terima;
-        $staterbar=$resultsclear->status_terima_barang;
-        $status_transfer= '';
-        $status_admin_terima= '';
-        $status_terima_barang= '';
+             
+        
 
             if ($results == null) {
-                    return view('Kindeuw.Caritransaksiku', compact('resultsclear', 'id', 'kurir'));
+                    return view('Kindeuw.Caritransaksiku');
                 }else{
+
+                $resultsclear = $results[0];
+
+                $idkurir = $resultsclear->kurir;
+                $kurir = DB::select('select opsi_kurir from kurir where id = ?', [$resultsclear->kurir])[0]->opsi_kurir;        
+                $stattrans=$resultsclear->status_transfer;
+                $staadter=$resultsclear->status_admin_terima;
+                $staterbar=$resultsclear->status_terima_barang;
+                $status_transfer= '';
+                $status_admin_terima= '';
+                $status_terima_barang= '';  
+
                     if ($stattrans=='0') {
                         $status_transfer='BELUM MEMBAYAR';
                         }
@@ -304,9 +308,13 @@ class KindeuwController extends Controller {
                         }elseif ($staterbar=='1') {
                             $status_terima_barang='BARANG SUDAH DITERIMA';
                         }
+
                     
                     return view('Kindeuw.Transaksiku', compact('resultsclear', 'id', 'kurir', 'status_transfer', 'status_admin_terima', 'status_terima_barang'));
                 }
+             
+        }
+
     }
 
     public function konfirmasipembayaran($id){
