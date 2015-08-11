@@ -76,7 +76,7 @@
 
                         <strong>
                         
-                            Jumlah Buku : <span style="color:red">{{ $count }}</span>
+                            Jumlah Transaksi : <span style="color:red">{{ $count }}</span>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             Sudah Membayar : <span style="color:blue">{{$countbayar}}</span>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

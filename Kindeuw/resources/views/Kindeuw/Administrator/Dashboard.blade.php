@@ -1,6 +1,9 @@
 @extends('Kindeuw.Administrator.Admin')
 @section('kontensatu')
 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+<?php $uang=$countsukses;
+                    $format = number_format($uang, 0, '.', '.');
+                    ?>
 <div class="row">
 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 	<div class="col-lg-3.col-lg-offset-4 col-xs-6">
@@ -28,6 +31,20 @@
                   <i class="fa fa-shopping-cart white"></i>
                 </div>
                 <a href="{{ url('Admin/list/transaksi')}}" class="small-box-footer">Lihat List <i class="fa fa-arrow-circle-right"></i></a>
+              </div>
+            </div>
+
+            <div class="col-lg-3.col-lg-offset-4 col-xs-12">
+              
+              <div class="small-box bg-aqua">
+                <div class="inner">
+                <p>TOTAL PEMBAYARAN SUKSES</p>
+                  <h3>Rp. {{ $format }}</h3>
+                </div>
+                <div class="icon">
+                  <i class="fa fa-money white"></i>
+                </div>
+                
               </div>
             </div>
 </div>

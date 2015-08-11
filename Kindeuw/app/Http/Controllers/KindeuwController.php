@@ -191,12 +191,55 @@ class KindeuwController extends Controller {
 
     public function excel(){
         $data = Kindeuw::all();
+        $data2 = Transaksi::all();
+        $data3 = Konfirmasi::all();
+        $data4 = Kurir::all();
+        $data5 = Kota::all();
+        $data6 = Bahasa::all();
+        $data7 = Genre::all();
 
-    Excel::create('iniexcel', function($excel) use($data) {
 
-    $excel->sheet('coba1', function($sheet) use($data) {
+    Excel::create('KindeuwInfoBuku', function($excel) use($data, $data2, $data3, $data4, $data5, $data6, $data7) {
+
+    $excel->sheet('books', function($sheet) use($data) {
 
         $sheet->fromArray($data);
+
+    });
+
+    $excel->sheet('transaksi', function($sheet) use($data2) {
+
+        $sheet->fromArray($data2);
+
+    });
+
+    $excel->sheet('konfirmasi_transaksi', function($sheet) use($data3) {
+
+        $sheet->fromArray($data3);
+
+    });
+
+    $excel->sheet('kurir', function($sheet) use($data4) {
+
+        $sheet->fromArray($data4);
+
+    });
+
+    $excel->sheet('kota', function($sheet) use($data5) {
+
+        $sheet->fromArray($data5);
+
+    });
+
+    $excel->sheet('bahasa', function($sheet) use($data6) {
+
+        $sheet->fromArray($data6);
+
+    });
+
+    $excel->sheet('genre', function($sheet) use($data7) {
+
+        $sheet->fromArray($data7);
 
     });
 

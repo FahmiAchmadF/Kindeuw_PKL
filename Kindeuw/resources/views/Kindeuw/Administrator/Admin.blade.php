@@ -127,7 +127,12 @@
                 <li><a href="{{ url('Admin/tambah/kota') }}"><i class="fa fa-building"></i> Kota</a></li>
               </ul>
             </li>
-            
+            <li class="header">EXPORT</li>
+            <li>
+              <a href="{{ url('Kindeuw/excel/excel') }}">
+                <i class="fa fa-th"></i> <span>Export Data -> Excel</span>
+              </a>
+            </li>
           </ul>
         </section>
       

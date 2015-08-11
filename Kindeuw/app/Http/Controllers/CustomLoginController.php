@@ -55,14 +55,16 @@ class CustomLoginController extends Controller {
 		$username = Auth::user()->username;
 			$count = DB::table('books')->where('stok','>',[0])->count();
 			$counttransaksi = DB::table('transaksi')->count();
+			$countsukses = DB::table('transaksi')->where('status_transfer', [1])->sum('Total');
 
-			return view('Kindeuw.Administrator.Dashboard', compact('username', 'count', 'counttransaksi'));
+			return view('Kindeuw.Administrator.Dashboard', compact('username', 'count', 'counttransaksi', 'countsukses'));
 	}
 
 	public function index(){
 		$username = Auth::user()->username;
 		$manekinds = Kindeuw::paginate(10);
 		$count = DB::table('books')->count();
+		
 		return view('Kindeuw.Administrator.Index', compact('username', 'manekinds', 'count'));
 
 	}
@@ -79,8 +81,8 @@ class CustomLoginController extends Controller {
 			$username = Auth::user()->username;
 			$count = DB::table('books')->where('stok','>',[0])->count();
 			$counttransaksi = DB::table('transaksi')->count();
-			
-			 return view('Kindeuw.Administrator.Dashboard', compact('username', 'count', 'counttransaksi'));
+			$countsukses = DB::table('transaksi')->where('status_transfer', [1])->sum('Total');
+			 return view('Kindeuw.Administrator.Dashboard', compact('username', 'count', 'counttransaksi', 'countsukses'));
 		}else{
 			\Session::flash('Logingagal','Silahkan Periksa Email Dan Password Anda');
 			return redirect('index');
