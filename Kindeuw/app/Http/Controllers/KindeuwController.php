@@ -91,10 +91,15 @@ class KindeuwController extends Controller {
 
 	public function baca($id){
 		$show = Kindeuw::find($id);
-        $Bahasa = $show->bahasa_nya();
+        if ($show == null) {
+            abort(404);
+        }else{
+            $Bahasa = $show->bahasa_nya();
         $Genre = $show->genre_nya();
-	   
-		return view('Kindeuw.Baca', compact('show', 'Bahasa', 'Genre'));
+       
+        return view('Kindeuw.Baca', compact('show', 'Bahasa', 'Genre'));
+        }
+        
 	}
 
 	public function hapus($id){
@@ -108,11 +113,6 @@ class KindeuwController extends Controller {
 
     public  function ubah($id, Requests\KindeuwRequest $request){    
         $req = $request->all();
-        //dd($req);
-        
-        
-        
-
         $manekinds = Kindeuw::paginate(10);
         $username = Auth::user()->username;
         $hasil = Kindeuw::find($id);

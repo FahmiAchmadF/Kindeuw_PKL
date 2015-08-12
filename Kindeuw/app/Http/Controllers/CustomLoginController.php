@@ -99,10 +99,15 @@ class CustomLoginController extends Controller {
 
 	 public function baca($id){
 		$show = Kindeuw::find($id);
-		$Bahasa = $show->bahasa_nya();
+		if ($show == null) {
+			abort(404);
+		}else{
+			$Bahasa = $show->bahasa_nya();
         $Genre = $show->genre_nya();
 	    $username = Auth::user()->username;
 		return view('Kindeuw.Administrator.Baca', compact('show', 'username', 'Bahasa', 'Genre', 'stokhabis'));
+		}
+		
 	}
 
 	public function cari(){
