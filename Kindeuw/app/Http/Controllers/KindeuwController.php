@@ -78,14 +78,16 @@ class KindeuwController extends Controller {
         $username = Auth::user()->username;
         $manekinds = Kindeuw::paginate(10);
             if ($file == null) {
+                $count = DB::table('books')->count();
                 \Session::flash('flash_message','Berhasil Menambah Data Buku');
-            return view('Kindeuw.Administrator.Index', compact('username', 'manekinds'));
+            return view('Kindeuw.Administrator.Index', compact('username', 'manekinds', 'count'));
         }else{
         $filename = $kindeuw->id . '.png';
 
         Image::make($file->getRealPath())->resize('600', '380')->save('image/'.$filename);
+        $count = DB::table('books')->count();
             \Session::flash('flash_message','Berhasil Menambah Data Buku');
-        return view('Kindeuw.Administrator.Index', compact('username', 'manekinds'));
+        return view('Kindeuw.Administrator.Index', compact('username', 'manekinds', 'count'));
         }
 	}
 
@@ -138,9 +140,9 @@ class KindeuwController extends Controller {
                     $hasil->Genre()->sync($request->input('Genre'));       
             }
 
-        
+            $count = DB::table('books')->count();
             \Session::flash('ubah_data','Berhasil Mengubah Data');
-        return view('Kindeuw.Administrator.Index', compact('manekinds', 'username'));
+        return view('Kindeuw.Administrator.Index', compact('manekinds', 'username', 'count'));
 
     }
 
@@ -322,6 +324,7 @@ class KindeuwController extends Controller {
         
 
             if ($results == null) {
+                \Session::flash('Transaksikugagal','Maaf Data Transaksi Yang Anda Inginkan Tidak Ditemukan !');
                     return view('Kindeuw.Caritransaksiku');
                 }else{
 
