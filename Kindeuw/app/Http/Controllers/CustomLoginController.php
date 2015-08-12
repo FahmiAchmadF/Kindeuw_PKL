@@ -55,7 +55,8 @@ class CustomLoginController extends Controller {
 		$username = Auth::user()->username;
 			$count = DB::table('books')->where('stok','>',[0])->count();
 			$counttransaksi = DB::table('transaksi')->count();
-			$countsukses = DB::table('transaksi')->where('status_transfer', [1])->sum('Total');
+			$countsukses = DB::table('transaksi')->where('status_transfer', [1])->where('status_admin_terima', [1])
+			->where('status_terima_barang', [1])->sum('Total');
 
 			return view('Kindeuw.Administrator.Dashboard', compact('username', 'count', 'counttransaksi', 'countsukses'));
 	}

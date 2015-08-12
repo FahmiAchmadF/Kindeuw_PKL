@@ -26,12 +26,20 @@
 				<th>Judul</th>
 				<th>Penerbit</th>
 				<th>Harga</th>
+                <th>Stok</th>
 				<th colspan="3"><center>Aksi</center></th>
 			</tr>
             <?php $i=1; ?>
             @foreach($manekinds as $manekin)
                     <?php $uang=$manekin['Harga'];
                     $format = number_format($uang, 0, '.', '.');
+                    $stok = $manekin['stok'];
+            $stokhabis = '';
+            if ($stok=='0') {
+                $stokhabis = 'Habis';
+            }else{
+                $stokhabis = $stok;
+            }
                     ?>
                     <tr>
                         <td>
@@ -42,6 +50,7 @@
                         <td>{{ $manekin->Judul }}</td>
                         <td>{{ $manekin->Penerbit }}</td>
                         <td>Rp.{{ $format }}</td>
+                        <td>{{ $stokhabis }}</td>
                         <td><center><a href="{{ url('Admin/ubah',$manekin->id) }}" class="btn btn-warning"><span class="glyphicon glyphicon-edit"></span> UBAH</a></center></td>
                         <td><center><a href="{{ url('Admin',$manekin->id) }}" class="btn btn-info"><span class="glyphicon glyphicon-book"></span> BACA</a></center></td>
                         <td><center>{!! Form::open(['url' => ['Admin/hapus',$manekin->id], 'method' => 'delete']) !!}

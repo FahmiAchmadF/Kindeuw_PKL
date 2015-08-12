@@ -159,8 +159,8 @@ class KindeuwController extends Controller {
         return view('Kindeuw.About');
     }
 
-    public function kontak(){
-        return view('Kindeuw.Contact');
+    public function panduan(){
+        return view('Kindeuw.Panduan');
     }
 
     public function cari(){
@@ -463,14 +463,35 @@ class KindeuwController extends Controller {
         $stok = DB::select('select stok from books where id = ?', [$tran->id_buku])[0];
         $selectstok = $stok->stok;
         $hasilstok = $selectstok + $stokdibeli;
-        DB::table('books')->where('id',[$tran->id_buku])->update(['stok' => $hasilstok]);
-        Transaksi::find($id)->delete();
-
-        $listtransaksi = Transaksi::paginate(10);
+        $pembayaran = $tran->status_transfer;
+        $terima = $tran->status_admin_terima;
+        $terimabarang = $tran->status_terima_barang;
+        if ($pembayaran == 1 AND $terima == 1 AND $terimabarang == 1) {
+            Transaksi::find($id)->delete();
+            $listtransaksi = Transaksi::paginate(10);
         $cobalist = DB::table('transaksi')->get();
         $username = Auth::user()->username;
         \Session::flash('hapus_data','Berhasil Menghapus Data');
         return redirect('Admin/list/transaksi')->with('username', 'listtransaksi', 'cobalist');
+        }elseif ($pembayaran == 1 AND $terima == 1 AND $terimabarang == 0){
+            Transaksi::find($id)->delete();
+            $listtransaksi = Transaksi::paginate(10);
+        $cobalist = DB::table('transaksi')->get();
+        $username = Auth::user()->username;
+        \Session::flash('hapus_data','Berhasil Menghapus Data');
+        return redirect('Admin/list/transaksi')->with('username', 'listtransaksi', 'cobalist');
+    }else{
+        DB::table('books')->where('id',[$tran->id_buku])->update(['stok' => $hasilstok]);
+        Transaksi::find($id)->delete();
+            $listtransaksi = Transaksi::paginate(10);
+        $cobalist = DB::table('transaksi')->get();
+        $username = Auth::user()->username;
+        \Session::flash('hapus_data','Berhasil Menghapus Data');
+        return redirect('Admin/list/transaksi')->with('username', 'listtransaksi', 'cobalist');
+    }
+        
+
+        
     }
 
     public function tambahgenre(){

@@ -10,7 +10,7 @@
     <script type="text/javascript" src="{{ asset('js\bootstrap.min.js') }}"></script>
 </head>
 <body>
-<!-- Static navbar -->
+
     <nav class="navbar navbar-default navbar-static-top navbarcolor">
       <div class="container">
         <div class="navbar-header">
@@ -25,20 +25,17 @@
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li><a href="{{ url('Kindeuw/About/About') }}" class="fontcolor">Tentang Kami</a></li>
-            <li><a href="{{ url('Kindeuw/Contact/Contact') }}" class="fontcolor">Kontak</a></li>
+            <li><a href="{{ url('Kindeuw/panduan/panduan') }}" class="fontcolor">Panduan</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
           <li><a href="{{ url('transaksiku/caritransaksiku') }}" class="fontcolor">Cari TransaksiKU</a></li>
             
           </ul>
-        </div><!--/.nav-collapse -->
+        </div>
       </div>
     </nav>
 
 @yield('kontensatu')
 
-<!-- <div class="fahmifooter">
-  
-</div>
- --></body>
+</body>
 </html>

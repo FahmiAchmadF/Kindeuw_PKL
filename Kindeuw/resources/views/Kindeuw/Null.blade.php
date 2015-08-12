@@ -33,4 +33,6 @@
 @yield('load')
 </body>
 <script type="text/javascript" src="{{ asset('js/jquery-2.1.4.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js\jquery-1.11.3.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js\bootstrap.min.js') }}"></script>
 </html>

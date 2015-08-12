@@ -31,7 +31,7 @@ Route::get('Admin/dashboard/index', 'CustomLoginController@dashboard');
 Route::get('Kindeuw', 'KindeuwController@index');
 Route::get('Kindeuw/{id}', 'KindeuwController@baca');
 Route::get('Kindeuw/About/About', 'KindeuwController@about');
-Route::get('Kindeuw/Contact/Contact', 'KindeuwController@kontak');
+Route::get('Kindeuw/panduan/panduan', 'KindeuwController@panduan');
 Route::post('Kindeuw/search/search/search', 'KindeuwController@cari');
 Route::get('Transaksi/pdf/pdf/{id}', 'KindeuwController@pdfshow');
 Route::get('Kindeuw/excel/excel', 'KindeuwController@excel');
