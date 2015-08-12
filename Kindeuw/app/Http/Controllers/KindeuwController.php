@@ -107,8 +107,9 @@ class KindeuwController extends Controller {
         $manekinds = Kindeuw::paginate(10);
         File::delete('image/' . $id .'.png');
         $username = Auth::user()->username;
+        $count = DB::table('books')->count();
         \Session::flash('hapus_data','Berhasil Menghapus Data');
-        return view('Kindeuw.Administrator.Index', compact('username', 'manekinds'));
+        return view('Kindeuw.Administrator.Index', compact('username', 'manekinds', 'count'));
 	}
 
     public  function ubah($id, Requests\KindeuwRequest $request){    

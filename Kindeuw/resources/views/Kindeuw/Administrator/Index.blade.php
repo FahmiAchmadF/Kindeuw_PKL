@@ -2,15 +2,21 @@
 @section('kontensatu')
 
     @if(Session::has('flash_message'))
-        <div class="alert alert-success"><span class="glyphicon glyphicon-ok"></span> {{ Session::get('flash_message') }}</div>
+        <div class="alert alert-success alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <span class="glyphicon glyphicon-ok"></span> {{ Session::get('flash_message') }}</div>
     @endif
 
     @if(Session::has('ubah_data'))
-        <div class="alert alert-success"><span class="glyphicon glyphicon-ok"></span> {{ Session::get('ubah_data') }}</div>
+        <div class="alert alert-success alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <span class="glyphicon glyphicon-ok"></span> {{ Session::get('ubah_data') }}</div>
     @endif
 
     @if(Session::has('hapus_data'))
-        <div class="alert alert-success"><span class="glyphicon glyphicon-ok"></span> {{ Session::get('hapus_data') }}</div>
+        <div class="alert alert-success alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <span class="glyphicon glyphicon-ok"></span> {{ Session::get('hapus_data') }}</div>
     @endif
     <div class="col-lg-12 col-md-12 col-sm-12 col-sx-12">
     <div class="panel panel-default">

@@ -3,7 +3,9 @@
 
 
 @if(Session::has('hapus_data'))
-        <div class="alert alert-success"><span class="glyphicon glyphicon-ok"></span> {{ Session::get('hapus_data') }}</div>
+        <div class="alert alert-success alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <span class="glyphicon glyphicon-ok"></span> {{ Session::get('hapus_data') }}</div>
     @endif
     <div class="panel panel-default">
     <div class="panel-heading">

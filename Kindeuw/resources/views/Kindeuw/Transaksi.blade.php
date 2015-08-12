@@ -2,7 +2,9 @@
 @section('kontensatu')
 <div class="col-lg-12 col-xs-12">
 @if(Session::has('OverBuy'))
-    <div class="alert alert-danger"><span class="glyphicon glyphicon-remove-sign"></span> {{ Session::get('OverBuy') }}</div>
+    <div class="alert alert-danger alert-dismissible" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <span class="glyphicon glyphicon-remove-sign"></span> {{ Session::get('OverBuy') }}</div>
 @endif
 
 <div class="panel panel-default">
@@ -68,7 +70,8 @@
 	</div>
 <div class="panel-footer ">
 @if ($errors->any())
-		<div class="alert alert-danger">
+		<div class="alert alert-danger alert-dismissible">
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 		<center><h1>Tolong Perikasa Inputan Anda !</h1></center>
 			@foreach ($errors->all() as $error)
 				<p><span class="glyphicon glyphicon-remove-sign"></span> {{ $error }}</p>

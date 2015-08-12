@@ -2,7 +2,9 @@
 @section('kontensatu')
 
 	@if(Session::has('succes'))
-        <div class="alert alert-success"><span class="glyphicon glyphicon-success"></span> {{ Session::get('succes') }}</div>
+        <div class="alert alert-success alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <span class="glyphicon glyphicon-success"></span> {{ Session::get('succes') }}</div>
     @endif
 		<div class="panel panel-default">
 					<div class="panel-heading">
@@ -43,7 +45,8 @@
 					</div>
                 </div>
                 @if ($errors->any())
-		<div class="alert alert-danger">
+		<div class="alert alert-danger alert-dismissible" role="alert">
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 		<center><h1>Tolong Perikasa Inputan Anda !</h1></center>
 			@foreach ($errors->all() as $error)
 				<p><span class="glyphicon glyphicon-remove-sign"></span> {{ $error }}</p>

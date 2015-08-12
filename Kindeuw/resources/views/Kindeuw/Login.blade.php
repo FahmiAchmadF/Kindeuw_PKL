@@ -2,7 +2,9 @@
 @section('load')
 
 @if(Session::has('Logingagal'))
-        <div class="alert alert-danger"><span class="glyphicon glyphicon-remove-sign"></span> {{ Session::get('Logingagal') }}</div>
+        <div class="alert alert-danger alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <span class="glyphicon glyphicon-remove-sign"></span> {{ Session::get('Logingagal') }}</div>
     @endif
     <div class="container" style="margin-top:40px">
 		<div class="row">
@@ -12,7 +14,7 @@
 						<strong> Silahkan Login Admin </strong>
 					</div>
 					<div class="panel-body">
-						{!! Form::open(['url'=>'Kindeuw/index/index', 'method'=>'POST']) !!}
+						{!! Form::open(['url'=>'Kindeuw/index/index', 'method'=>'POST', 'value' => 'csrf_token()']) !!}
 							<fieldset>
 								<div class="row">
 									<div class="center-block">
@@ -63,7 +65,8 @@
 	</div>
 
 @if ($errors->any())
-		<div class="alert alert-danger">
+		<div class="alert alert-danger alert-dismissible" role="alert">
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 		<center><h1>Tolong Perikasa Inputan Anda !</h1></center>
 			@foreach ($errors->all() as $error)
 				<p><span class="glyphicon glyphicon-remove-sign"></span> {{ $error }}</p>
