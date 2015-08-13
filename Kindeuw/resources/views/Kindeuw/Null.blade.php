@@ -18,14 +18,13 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="">KINDEUW INFO BUKU</a>
+          <a class="navbar-brand" href="">KINDEUW Bookstore</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="{{ url('Kindeuw/index/index') }}">Login</a></li>
-            <li><a href="{{ url('Kindeuw/daftar/akun') }}">Daftar</a></li>
+            <li><a href="{{ url('index') }}">Login</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>

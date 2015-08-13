@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Kindeuw Info Buku</title>
+	<title>Kindeuw Bookstore</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 	<link rel="stylesheet" type="text/css" href="{{ asset('bootstrap-3.3.5-dist\css\bootstrap.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css\footer.css') }}">
@@ -19,7 +19,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand fontcolor" href="{{ url('Kindeuw') }}">KINDEUW INFO BUKU</a>
+          <a class="navbar-brand fontcolor" href="{{ url('Kindeuw') }}">KINDEUW Bookstore</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
